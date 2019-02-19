@@ -1,0 +1,41 @@
+<!-- 
+  # License
+  # This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo
+  # of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019
+
+  # Code History
+  # 1.0 - 2/5/2019 - Sean Chan - Initial File
+  # 2.0 - 2/7/2019 - Menard Cruz - Initial Frontend layouting
+  # 2.1 - 2/7/2019 - Michael Marrero - Edited Comments, Added Comment block for detailed information regarding the software.
+
+  # File Creation Date: 2/5/2019
+  # Development Group: Transit Development Tteam (Chan,Cruz,Marrero)
+  # Client Group: UP Student Dormers
+  # Purpose of the Software: The project is to make a web-based application named Transit, and its main vision is to inform dormers and other temporary housed students to travel back to their 
+  #   permanent residence of the routes and methods from their current location. Being on a budget, students are more inclined to cheaper options in favor of comfort or travel time.
+-->
+
+<% content_for :title, "Add New Favorite" %>
+<div class="container">
+	<h1>New Favorite</h1>
+
+	<%= render 'form', favorite: @favorite %>
+	<table class="table w-100">
+	  <!--
+        Displays the attributes that need to be filled up when creating a New Favorite Route Group
+      -->
+	  <th>Commuter ID</th>
+	  <th>Commuter Name</th>
+	  <!--
+        The line of code after this checks if the commuter ID when creating a New Favorite Route Group exists
+	  -->
+	  <% @commuters.each do |commuter| %>
+	  <tr>
+	    <td><%= commuter.id %></td>
+	    <td><%= commuter.name %></td>
+	  </tr>
+	  <% end %>
+	</table>
+
+	<%= link_to 'Back', favorites_path %>
+</div>

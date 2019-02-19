@@ -1,0 +1,31 @@
+<!-- # License
+  # This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo
+  # of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019
+
+  # Code History
+  # 1.0 - 2/5/2019 - Sean Chan - Initial File
+  # 2.0 - 2/7/2019 - Menard Cruz - Initial Frontend layouting
+  # 2.1 - 2/7/2019 - Michael Marrero - Edited Comments, Addec Comment block that gives detailed information on the software.
+
+  # File Creation Date: 2/5/2019
+  # Development Group: Transit Development Tteam (Chan,Cruz,Marrero)
+  # Client Group: UP Student Dormers
+  # Purpose of the Software: The project is to make a web-based application named Transit, and its main vision is to inform dormers and other temporary housed students to travel back to their
+  #   permanent residence of the routes and methods from their current location. Being on a budget, students are more inclined to cheaper options in favor of comfort or travel time.
+-->
+
+<nav class="navbar w-100 transit-navbar">
+  <div class="d-flex p-2 w-100">
+    <div class="container m-auto d-flex">
+      <a class="transit-icon my-auto" href="<%=  root_path %>" > <h3>TRANSIT</h3> </a>
+
+      <ul class="d-flex ml-auto my-auto">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Favorites", favorites_path %></li>
+        <li><%= link_to "Transit Lines", transit_lines_path %></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<div class="transit-navbar-header-padding"></div>

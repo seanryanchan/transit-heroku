@@ -1,0 +1,56 @@
+<!--
+  # License
+  # This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo
+  # of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019
+
+  # Code History
+  # 1.0 - 2/5/2019 - Sean Chan - Initial File
+  # 2.0 - 2/7/2019 - Menard Cruz - Initial Frontend layouting
+  # 2.1 - 2/7/2019 - Michael Marrero - Edited Comments, Added Comment block for detailed information regarding the software.
+
+  # File Creation Date: 2/5/2019
+  # Development Group: Transit Development Tteam (Chan,Cruz,Marrero)
+  # Client Group: UP Student Dormers
+  # Purpose of the Software: The project is to make a web-based application named Transit, and its main vision is to inform dormers and other temporary housed students to travel back to their
+  #   permanent residence of the routes and methods from their current location. Being on a budget, students are more inclined to cheaper options in favor of comfort or travel time.
+-->
+
+<% content_for :title, "Favorites" %>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Favorites</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Favorite Route Group</th>
+        <th>Commuter Name</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @favorites.each do |favorite| %>
+      <!--
+        Displays the lists of Favorite Route Groups and what the user can do with them.
+        Users can either:
+          Show, Read more detailed information of the Favorite Route Group
+          Edit, Edit the Favorite Route Group's Name
+          Destroy, To delete/remove the Favorite Route Group
+      -->
+        <tr>
+          <td><%= favorite.name %></td>
+          <td><%= favorite.commuter.name %></td>
+          <td><%= link_to 'Show', favorite %></td>
+          <td><%= link_to 'Edit', edit_favorite_path(favorite) %></td>
+          <td><%= link_to 'Destroy', favorite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Favorite', new_favorite_path %>
+</div>

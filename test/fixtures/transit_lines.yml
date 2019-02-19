@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   status: MyString
+#   operating_hours: MyString
+#   type:
+#   restrictions: MyString
+#   reliability: 1
+#   name: MyString
+#   avg_price: 1.5
+#
+# two:
+#   status: MyString
+#   operating_hours: MyString
+#   type:
+#   restrictions: MyString
+#   reliability: 1
+#   name: MyString
+#   avg_price: 1.5

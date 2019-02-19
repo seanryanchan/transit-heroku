@@ -1,0 +1,2 @@
+class DepartureTime < ApplicationRecord
+end

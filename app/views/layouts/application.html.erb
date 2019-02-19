@@ -1,0 +1,57 @@
+<!--
+  # License
+  # This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo
+  # of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019
+
+  # Code History
+  # 1.0 - 2/5/2019 - Sean Chan - Initial File
+  # 2.0 - 2/7/2019 - Menard Cruz - Initial Frontend layouting
+  # 3.0 - 2/7/2019 - Sean Chan - ERB fixes
+  # 3.1 - 2/7/2019 - Michael Marrerio - Edited comments, Added Comment block for detailed informationon the software.
+
+  # File Creation Date: 2/5/2019
+  # Development Group: Transit Development Tteam (Chan,Cruz,Marrero)
+  # Client Group: UP Student Dormers
+  # Purpose of the Software: The project is to make a web-based application named Transit, and its main vision is to inform dormers and other temporary housed students to travel back to their
+  #   permanent residence of the routes and methods from their current location. Being on a budget, students are more inclined to cheaper options in favor of comfort or travel time.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <%# Change title depending on page  %>
+    <title><%= yield(:title) %> - Transit</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%# Allow responsiveness %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+  </head>
+
+  <body>
+    <%# Setting site-container to 100vh for element parent issues  %>
+    <div class="site-container">
+      <%= render 'layouts/header' %>
+
+        <%# This is placed so footer will stay below the pages %>
+        <div class="site-content py-5">
+
+          <%= yield %>
+
+        </div>
+
+        <div class="container">
+          <%= debug(params) if Rails.env.development? %>
+        </div>
+      <%= render 'layouts/footer' %>
+
+    </div>
+
+  </body>
+</html>

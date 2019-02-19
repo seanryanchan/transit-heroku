@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @transit_stop.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @transit_stop.type %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @transit_stop.status %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @transit_stop.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @transit_stop.latitude %>
+</p>
+
+<%= link_to 'Edit', edit_transit_stop_path(@transit_stop) %> |
+<%= link_to 'Back', transit_stops_path %>

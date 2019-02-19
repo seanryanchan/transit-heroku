@@ -1,0 +1,10 @@
+<%= content_for :title, "Editing " + @transit_line.name %>
+
+<div class="container">
+  <h1>Editing Transit Line</h1>
+
+  <%= render 'form', transit_line: @transit_line %>
+
+  <%= link_to 'Show', @transit_line %> |
+  <%= link_to 'Back', transit_lines_path %>
+</div>
