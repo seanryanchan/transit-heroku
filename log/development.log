@@ -11902,3 +11902,556 @@ Processing by SessionsController#create as HTML
 Completed 200 OK in 106ms (Views: 100.4ms | ActiveRecord: 1.5ms)
 
 
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (8.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "commuters"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "commuters" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (2.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "departure_times"[0m
+  ↳ db/schema.rb:23
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "departure_times" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_lines_transit_stops_id" integer, "departure_time" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:23
+  [1m[35m (2.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "commuter_id" integer)[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_commuter_id" ON "favorites" ("commuter_id")[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites_transit_lines"[0m
+  ↳ db/schema.rb:38
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "favorites_transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "favorite_id" integer)[0m
+  ↳ db/schema.rb:38
+  [1m[35m (2.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines"[0m
+  ↳ db/schema.rb:43
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar, "operating_hours" varchar, "restrictions" varchar, "reliability" integer, "name" varchar, "avg_price" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "kind" varchar)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (2.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines_stops"[0m
+  ↳ db/schema.rb:55
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "transit_lines_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "transit_stop_id" integer, "stop_number" integer)[0m
+  ↳ db/schema.rb:55
+  [1m[35m (2.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_stops"[0m
+  ↳ db/schema.rb:61
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "transit_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "status" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "latitude" float, "longitude" float, "kind" varchar)[0m
+  ↳ db/schema.rb:61
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (2.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "commuters"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "commuters" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (2.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "departure_times"[0m
+  ↳ db/schema.rb:23
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "departure_times" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_lines_transit_stops_id" integer, "departure_time" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:23
+  [1m[35m (2.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "commuter_id" integer)[0m
+  ↳ db/schema.rb:30
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_commuter_id" ON "favorites" ("commuter_id")[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites_transit_lines"[0m
+  ↳ db/schema.rb:38
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "favorites_transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "favorite_id" integer)[0m
+  ↳ db/schema.rb:38
+  [1m[35m (2.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines"[0m
+  ↳ db/schema.rb:43
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar, "operating_hours" varchar, "restrictions" varchar, "reliability" integer, "name" varchar, "avg_price" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "kind" varchar)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (2.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines_stops"[0m
+  ↳ db/schema.rb:55
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "transit_lines_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "transit_stop_id" integer, "stop_number" integer)[0m
+  ↳ db/schema.rb:55
+  [1m[35m (2.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_stops"[0m
+  ↳ db/schema.rb:61
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "transit_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "status" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "latitude" float, "longitude" float, "kind" varchar)[0m
+  ↳ db/schema.rb:61
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Update (0.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "development"], ["updated_at", "2019-02-19 16:21:59.968695"], ["key", "environment"]]
+  ↳ db/schema.rb:13
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Update (0.7ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2019-02-19 16:21:59.973883"], ["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Started GET "/" for 127.0.0.1 at 2019-03-20 14:40:40 +0800
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/seanryanchan/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/_flashes.html.erb (0.7ms)
+  Rendered static_pages/home.html.erb within layouts/application (516.2ms)
+  [1m[36mCommuter Load (1.4ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:14
+  Rendered layouts/_header.html.erb (23.4ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 918ms (Views: 900.6ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/transit_lines" for 127.0.0.1 at 2019-03-20 14:40:44 +0800
+Processing by TransitLinesController#index as HTML
+  Rendering transit_lines/index.html.erb within layouts/application
+  [1m[36mTransitLine Load (1.4ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines"[0m
+  ↳ app/views/transit_lines/index.html.erb:71
+  Rendered transit_lines/index.html.erb within layouts/application (7.6ms)
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:14
+  Rendered layouts/_header.html.erb (3.5ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 152ms (Views: 117.8ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2019-03-20 14:40:46 +0800
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (35.2ms)
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:14
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 143ms (Views: 135.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/transit_lines" for 127.0.0.1 at 2019-03-20 14:40:48 +0800
+Processing by TransitLinesController#index as HTML
+  Rendering transit_lines/index.html.erb within layouts/application
+  [1m[36mTransitLine Load (0.3ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines"[0m
+  ↳ app/views/transit_lines/index.html.erb:71
+  Rendered transit_lines/index.html.erb within layouts/application (4.5ms)
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:14
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 124ms (Views: 120.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-20 14:40:50 +0800
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/_flashes.html.erb (0.8ms)
+  Rendered static_pages/home.html.erb within layouts/application (7.7ms)
+  [1m[36mCommuter Load (0.3ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:14
+  Rendered layouts/_header.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 137ms (Views: 130.2ms | ActiveRecord: 0.3ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "commuters"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "commuters" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "departure_times"[0m
+  ↳ db/schema.rb:23
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "departure_times" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_lines_transit_stops_id" integer, "departure_time" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "commuter_id" integer)[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_commuter_id" ON "favorites" ("commuter_id")[0m
+  ↳ db/schema.rb:30
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites_transit_lines"[0m
+  ↳ db/schema.rb:38
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "favorites_transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "favorite_id" integer)[0m
+  ↳ db/schema.rb:38
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines"[0m
+  ↳ db/schema.rb:43
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar, "operating_hours" varchar, "restrictions" varchar, "reliability" integer, "name" varchar, "avg_price" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "kind" varchar)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines_stops"[0m
+  ↳ db/schema.rb:55
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "transit_lines_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "transit_stop_id" integer, "stop_number" integer)[0m
+  ↳ db/schema.rb:55
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_stops"[0m
+  ↳ db/schema.rb:61
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "transit_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "status" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "latitude" float, "longitude" float, "kind" varchar)[0m
+  ↳ db/schema.rb:61
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190207080253)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190204144554),
+(20190206085910),
+(20190128054701),
+(20190207043148),
+(20190128033333),
+(20190128034822),
+(20190207015131),
+(20190205054745),
+(20190130064854),
+(20190207044620);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-03-20 06:41:47.030070"], ["updated_at", "2019-03-20 06:41:47.030070"]]
+  ↳ db/schema.rb:13
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "commuters"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "commuters" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "departure_times"[0m
+  ↳ db/schema.rb:23
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "departure_times" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_lines_transit_stops_id" integer, "departure_time" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "commuter_id" integer)[0m
+  ↳ db/schema.rb:30
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_commuter_id" ON "favorites" ("commuter_id")[0m
+  ↳ db/schema.rb:30
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites_transit_lines"[0m
+  ↳ db/schema.rb:38
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "favorites_transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "favorite_id" integer)[0m
+  ↳ db/schema.rb:38
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines"[0m
+  ↳ db/schema.rb:43
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar, "operating_hours" varchar, "restrictions" varchar, "reliability" integer, "name" varchar, "avg_price" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "kind" varchar)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines_stops"[0m
+  ↳ db/schema.rb:55
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "transit_lines_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "transit_stop_id" integer, "stop_number" integer)[0m
+  ↳ db/schema.rb:55
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_stops"[0m
+  ↳ db/schema.rb:61
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "transit_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "status" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "latitude" float, "longitude" float, "kind" varchar)[0m
+  ↳ db/schema.rb:61
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190207080253)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190204144554),
+(20190206085910),
+(20190128054701),
+(20190207043148),
+(20190128033333),
+(20190128034822),
+(20190207015131),
+(20190205054745),
+(20190130064854),
+(20190207044620);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-03-20 06:41:47.085550"], ["updated_at", "2019-03-20 06:41:47.085550"]]
+  ↳ db/schema.rb:13
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2019-03-20 06:41:47.090346"], ["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mCommuter Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "commuters" WHERE LOWER("commuters"."email") = LOWER(?) LIMIT ?[0m  [["email", "sean@gmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mCommuter Create (0.4ms)[0m  [1m[32mINSERT INTO "commuters" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Sean"], ["email", "sean@gmail.com"], ["created_at", "2019-03-20 06:41:58.047015"], ["updated_at", "2019-03-20 06:41:58.047015"], ["password_digest", "$2a$10$yIsp6WBLCF3G4UxXPLqGgeWiShIaSaksE9ktTRCqAX5qtSh4RKhFq"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[36mCommuter Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "commuters" WHERE LOWER("commuters"."email") = LOWER(?) LIMIT ?[0m  [["email", "mmcruz@gmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mCommuter Create (0.4ms)[0m  [1m[32mINSERT INTO "commuters" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Menard"], ["email", "mmcruz@gmail.com"], ["created_at", "2019-03-20 06:41:58.119993"], ["updated_at", "2019-03-20 06:41:58.119993"], ["password_digest", "$2a$10$voyqf15a64w7l67ej3KZVed4Y5PJLXdBaCbHFrkRyWtdKdQr2pr3O"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:19
+  [1m[36mCommuter Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "commuters" WHERE LOWER("commuters"."email") = LOWER(?) LIMIT ?[0m  [["email", "mio@gmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:19
+  [1m[36mCommuter Create (0.3ms)[0m  [1m[32mINSERT INTO "commuters" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Michael"], ["email", "mio@gmail.com"], ["created_at", "2019-03-20 06:41:58.197405"], ["updated_at", "2019-03-20 06:41:58.197405"], ["password_digest", "$2a$10$J50jGsRm1uIFhcVSr.f.yOGpeqrfCa4b.ULXcQPevFg/IyX5q01lC"]]
+  ↳ db/seeds.rb:19
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:19
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:22
+  [1m[36mFavorite Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites" ("name", "created_at", "updated_at", "commuter_id") VALUES (?, ?, ?, ?)[0m  [["name", "Sean's Route to Pagudpud"], ["created_at", "2019-03-20 06:41:58.231031"], ["updated_at", "2019-03-20 06:41:58.231031"], ["commuter_id", 1]]
+  ↳ db/seeds.rb:22
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:23
+  [1m[36mFavorite Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites" ("name", "created_at", "updated_at", "commuter_id") VALUES (?, ?, ?, ?)[0m  [["name", "Menard's Route to Naga"], ["created_at", "2019-03-20 06:41:58.237160"], ["updated_at", "2019-03-20 06:41:58.237160"], ["commuter_id", 2]]
+  ↳ db/seeds.rb:23
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mFavorite Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites" ("name", "created_at", "updated_at", "commuter_id") VALUES (?, ?, ?, ?)[0m  [["name", "Mio's Route to Pangasinan"], ["created_at", "2019-03-20 06:41:58.242590"], ["updated_at", "2019-03-20 06:41:58.242590"], ["commuter_id", 3]]
+  ↳ db/seeds.rb:24
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[36mTransitLine Create (0.5ms)[0m  [1m[32mINSERT INTO "transit_lines" ("status", "operating_hours", "restrictions", "reliability", "name", "avg_price", "created_at", "updated_at", "kind") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["status", "Full Operation"], ["operating_hours", "24/7"], ["restrictions", "No food"], ["reliability", 8], ["name", "Five Star"], ["avg_price", 20.0], ["created_at", "2019-03-20 06:41:58.261138"], ["updated_at", "2019-03-20 06:41:58.261138"], ["kind", "Bus"]]
+  ↳ db/seeds.rb:27
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mTransitLine Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_lines" ("status", "operating_hours", "restrictions", "reliability", "name", "avg_price", "created_at", "updated_at", "kind") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["status", "Full Operation"], ["operating_hours", "7AM - 11PM"], ["restrictions", "No food and drinks"], ["reliability", 7], ["name", "MRT-3"], ["avg_price", 30.0], ["created_at", "2019-03-20 06:41:58.265844"], ["updated_at", "2019-03-20 06:41:58.265844"], ["kind", "Train"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:29
+  [1m[36mTransitLine Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_lines" ("status", "operating_hours", "restrictions", "reliability", "name", "avg_price", "created_at", "updated_at", "kind") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["status", "Full Operation"], ["operating_hours", "7AM - 11PM"], ["restrictions", "None"], ["reliability", 9], ["name", "Green Liner"], ["avg_price", 25.0], ["created_at", "2019-03-20 06:41:58.269834"], ["updated_at", "2019-03-20 06:41:58.269834"], ["kind", "Bus"]]
+  ↳ db/seeds.rb:29
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:29
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:32
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Cubao Southbound"], ["created_at", "2019-03-20 06:41:58.286299"], ["updated_at", "2019-03-20 06:41:58.286299"], ["latitude", 14.631], ["longitude", 121.045], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:32
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:32
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:33
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Cubao Northbound"], ["created_at", "2019-03-20 06:41:58.291081"], ["updated_at", "2019-03-20 06:41:58.291081"], ["latitude", 14.632], ["longitude", 121.045], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:33
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:33
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:34
+  [1m[36mTransitStop Create (0.6ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Parañaque Integrated Terminal Exchange"], ["created_at", "2019-03-20 06:41:58.294872"], ["updated_at", "2019-03-20 06:41:58.294872"], ["latitude", 14.51], ["longitude", 120.99], ["kind", "Transport Terminal"]]
+  ↳ db/seeds.rb:34
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:34
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:35
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Cubao Araneta"], ["created_at", "2019-03-20 06:41:58.299369"], ["updated_at", "2019-03-20 06:41:58.299369"], ["latitude", 14.51], ["longitude", 120.99], ["kind", "Transport Terminal"]]
+  ↳ db/seeds.rb:35
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:35
+  [1m[36mTransitStop Load (0.3ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 1]]
+  ↳ db/seeds.rb:38
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:38
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 1], ["transit_stop_id", 2]]
+  ↳ db/seeds.rb:38
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 1], ["transit_stop_id", 3]]
+  ↳ db/seeds.rb:38
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:38
+  [1m[36mTransitStop Load (0.1ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 2]]
+  ↳ db/seeds.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 2], ["transit_stop_id", 4]]
+  ↳ db/seeds.rb:39
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[36mTransitStop Load (0.3ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 3]]
+  ↳ db/seeds.rb:40
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:40
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["transit_stop_id", 1]]
+  ↳ db/seeds.rb:40
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:40
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:41
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:41
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:42
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:42
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:43
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:43
+  [1m[36mTransitLine Load (0.2ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines" INNER JOIN "favorites_transit_lines" ON "transit_lines"."id" = "favorites_transit_lines"."transit_line_id" WHERE "favorites_transit_lines"."favorite_id" = ?[0m  [["favorite_id", 1]]
+  ↳ db/seeds.rb:45
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:45
+  [1m[36mFavorite::HABTM_TransitLines Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 1], ["favorite_id", 1]]
+  ↳ db/seeds.rb:45
+  [1m[36mFavorite::HABTM_TransitLines Create (0.1ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 2], ["favorite_id", 1]]
+  ↳ db/seeds.rb:45
+  [1m[36mFavorite::HABTM_TransitLines Create (0.1ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["favorite_id", 1]]
+  ↳ db/seeds.rb:45
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:45
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:46
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:46
+  [1m[36mTransitLine Load (0.1ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines" INNER JOIN "favorites_transit_lines" ON "transit_lines"."id" = "favorites_transit_lines"."transit_line_id" WHERE "favorites_transit_lines"."favorite_id" = ?[0m  [["favorite_id", 2]]
+  ↳ db/seeds.rb:48
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:48
+  [1m[36mFavorite::HABTM_TransitLines Create (0.5ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 2], ["favorite_id", 2]]
+  ↳ db/seeds.rb:48
+  [1m[36mFavorite::HABTM_TransitLines Create (0.1ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["favorite_id", 2]]
+  ↳ db/seeds.rb:48
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:48
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:49
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:49
+Started GET "/login" for 127.0.0.1 at 2019-03-20 14:42:04 +0800
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/seanryanchan/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (7.1ms)
+  [1m[36mCommuter Load (0.4ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:14
+  Rendered layouts/_header.html.erb (14.5ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 430ms (Views: 418.3ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2019-03-20 14:42:14 +0800
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aTklDTyjcJe/9WA3/LVzG9MNzsgIxkhBd9ZTuGUjLixqraxUFAE52nl2W3TiedcnQNp9u9QHCs7Z2h8Dii3R1A==", "session"=>{"email"=>"sean@gmail.com", "password"=>"[FILTERED]"}, "button"=>""}
+  [1m[36mCommuter Load (0.3ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."email" = ? LIMIT ?[0m  [["email", "sean@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:16
+Redirected to http://localhost:3000/commuters/1
+Completed 302 Found in 85ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/commuters/1" for 127.0.0.1 at 2019-03-20 14:42:14 +0800
+Processing by CommutersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/commuters_controller.rb:19
+  Rendering commuters/show.html.erb within layouts/application
+  Rendered commuters/show.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 104ms (Views: 99.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/transit_lines" for 127.0.0.1 at 2019-03-20 14:42:16 +0800
+Processing by TransitLinesController#index as HTML
+  Rendering transit_lines/index.html.erb within layouts/application
+  [1m[36mTransitLine Load (0.4ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines"[0m
+  ↳ app/views/transit_lines/index.html.erb:71
+  Rendered transit_lines/index.html.erb within layouts/application (25.3ms)
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:14
+  Rendered layouts/_header.html.erb (3.1ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 172ms (Views: 125.1ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2019-03-20 14:42:17 +0800
+Processing by FavoritesController#index as HTML
+  Rendering favorites/index.html.erb within layouts/application
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:14
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."commuter_id" = ?[0m  [["commuter_id", 1]]
+  ↳ app/views/favorites/index.html.erb:51
+  Rendered favorites/index.html.erb within layouts/application (24.4ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 153ms (Views: 126.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-20 14:42:18 +0800
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/_flashes.html.erb (1.2ms)
+  Rendered static_pages/home.html.erb within layouts/application (10.6ms)
+  [1m[36mCommuter Load (0.3ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:14
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 117ms (Views: 109.2ms | ActiveRecord: 0.3ms)
+
+

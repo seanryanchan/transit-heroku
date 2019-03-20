@@ -7,6 +7,8 @@
   # 1.0 - 2/5/2019 - Sean Chan - Initial File
   # 2.0 - 2/7/2019 - Menard Cruz - Initial Frontend layouting
   # 2.1 - 2/7/2019 - Michael Marrero - Edited Comments, Added Comment block for detailed information regarding the software.
+  # 3.0 - 2/18/2019 - Michael Marrero - Added the editing of the transit lines, by adding/deleting transit lines within a favorite route group
+  # 3.1 - 3/7/2019 - Menard Cruz - Updated frontend
 
   # File Creation Date: 2/5/2019
   # Development Group: Transit Development Tteam (Chan,Cruz,Marrero)
@@ -16,13 +18,81 @@
 -->
 
 <%= content_for :title, "Editing " + @favorite.name %>
-<div class="container">
-  <h1>Editing Favorite</h1>
+<div class="container py-5">
+
+  <a href="<%=  favorites_path %>"><i class="fas fa-chevron-left"></i> Back</a>
+
+  <h1 class="mt-3">Editing <%= @favorite.name %> <a class="ml-2" href="<%= favorite_path %>"> <i class="fas fa-eye"></i> </a></h1>
   <!--
     The line of code after this, gives a form upon which we fill up in updating a Favorite Route Group's Name or to whom is the Favorite Route Group dedicated too
   -->
   <%= render 'form', favorite: @favorite %>
 
-  <%= link_to 'Show', @favorite %> |
-  <%= link_to 'Back', favorites_path %>
+  <hr>
+
+  <h2 class="my-4">List of available Transit Lines</h2>
+  <div class="row">
+    <div class="col-lg-6">
+      <h4>Owned</h4>
+      <table class = "table">
+
+        <tbody>
+          <% @favorite.transit_lines.each do |fav_transit_line| %>
+          <tr>
+            <td class="text-center"><i class="fas fa-circle
+                <% if fav_transit_line.status == "Full Operation" %>
+                  text-success
+                <% else %>
+                  text-danger
+                <% end %>
+                ">
+                </i>
+            </td>
+            <td><%= fav_transit_line.name %></td>
+            <td><%= fav_transit_line.operating_hours %></td>
+            <td><%= fav_transit_line.kind %></td>
+            <td><%= fav_transit_line.restrictions %></td>
+            <td><%= fav_transit_line.reliability %></td>
+            <td>P<%= sprintf('%.2f', fav_transit_line.avg_price) %></td>
+            <td><a href="<%= remove_transit_line_path(@favorite.id, fav_transit_line.id) %>" data-method="patch"><i class="fas fa-minus"></i></a></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-lg-6">
+      <h4>NOT yet added</h4>
+      <table class = "table">
+        <tbody>
+          <% @transit_lines.each do |transit_line| %>
+            <% catch :addedtransitline do %>
+                <% if @favorite.transit_lines.exists?(id: transit_line.id)
+                   throw :addedtransitline
+                end%>
+                <tr>
+                  <td class="text-center"><i class="fas fa-circle
+                      <% if transit_line.status == "Full Operation" %>
+                        text-success
+                      <% else %>
+                        text-danger
+                      <% end %>
+                      ">
+                      </i>
+                  </td>
+                  <td><%= transit_line.name %></td>    
+                  <td><%= transit_line.operating_hours %></td>
+                  <td><%= transit_line.kind %></td>
+                  <td><%= transit_line.restrictions %></td>
+                  <td><%= transit_line.reliability %></td>
+                  <td>P<%= sprintf('%.2f', transit_line.avg_price) %></td>
+                  <td><a href="<%= add_transit_line_path(@favorite.id, transit_line.id) %>" data-method="patch"> <i class="fas fa-plus"></i></a></td>
+                </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
 </div>

@@ -5,11 +5,12 @@
   # Code History
   # 1.0 - 2/5/2019 - Menard Cruz - Initial File
   # 1.1 - 2/7/2019 - Michael Marrero - Edited Comments, Added Comment Block that gives detailed information on the software.
+  # 2.0 - 3/4/2019 - Michael Marrero - Edited the index method to reflect search query results on transit lines
 
   # File Creation Date: 2/5/2019
   # Development Group: Transit Development Tteam (Chan,Cruz,Marrero)
   # Client Group: UP Student Dormers
-  # Purpose of the Software: The project is to make a web-based application named Transit, and its main vision is to inform dormers and other temporary housed students to travel back to their 
+  # Purpose of the Software: The project is to make a web-based application named Transit, and its main vision is to inform dormers and other temporary housed students to travel back to their
   #   permanent residence of the routes and methods from their current location. Being on a budget, students are more inclined to cheaper options in favor of comfort or travel time.
 
 class TransitLinesController < ApplicationController
@@ -19,6 +20,16 @@ class TransitLinesController < ApplicationController
   # GET /transit_lines.json
   def index
     @transit_lines = TransitLine.all
+    search
+  end
+
+  def search
+    if (params[:search])
+      @transit_lines = TransitLine.where(["name LIKE ?","%#{params[:search]}%"])
+    else
+      @transit_lines = TransitLine.all
+    end
+    render 'index'
   end
 
   # GET /transit_lines/1
@@ -83,6 +94,6 @@ class TransitLinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transit_line_params
-      params.require(:transit_line).permit(:status, :operating_hours, :type, :restrictions, :reliability, :name, :avg_price)
+      params.require(:transit_line).permit(:status, :operating_hours, :kind, :restrictions, :reliability, :name, :avg_price)
     end
 end

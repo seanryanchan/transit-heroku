@@ -8,6 +8,7 @@
   # 2.0 - 2/7/2019 - Menard Cruz - Initial Frontend layouting
   # 3.0 - 2/7/2019 - Sean Chan - ERB fixes
   # 3.1 - 2/7/2019 - Michael Marrero - Edited Comments, Addec Comment block that gives detailed information on the software.
+  # 3.2 - 3/7/2019 - Menard Cruz - Updated Front End
 
   # File Creation Date: 2/5/2019
   # Development Group: Transit Development Tteam (Chan,Cruz,Marrero)
@@ -18,51 +19,64 @@
 
 <%= content_for :title, @transit_line.name %>
 
-<div class="container">
+<div class="container py-5">
 
-  <p id="notice"><%= notice %></p>
+  <% if notice %>
+    <div class="alert alert-info" id="notice" role="alert">
+      <i class="fas fa-check"></i> <%= notice %>
+    </div>
+  <% end %>
 
-  <h1><%= @transit_line.name %></h1>
+  <a href="<%=  favorites_path %>"><i class="fas fa-chevron-left"></i> Back</a>
 
-  <div class="p-3">
-    <p>
-      <strong>Status:</strong>
-      <%= @transit_line.status %>
-    </p>
+  <h1 class="mt-3"><i class="fas fa-circle h3
+        <% if @transit_line.status == "Full Operation" %>
+          text-success
+        <% else %>
+          text-danger
+        <% end %>
+        ">
+        </i>
 
-    <p>
-      <strong>Operating hours:</strong>
-      <%= @transit_line.operating_hours %>
-    </p>
+      <%= @transit_line.name %> <a class="ml-2" href="<%= edit_transit_line_path(@transit_line) %>"><i class="fas fa-pen-square"></i></a></h1>
 
-    <p>
-      <strong>Type:</strong>
-      <%= @transit_line.kind %>
-    </p>
+  <div class="p-3 row">
+    <div class="col-lg-6">
+      <p>
+        <strong>Operating hours:</strong>
+        <%= @transit_line.operating_hours %>
+      </p>
 
-    <p>
-      <strong>Restrictions:</strong>
-      <%= @transit_line.restrictions %>
-    </p>
+      <p>
+        <strong>Type:</strong>
+        <%= @transit_line.kind %>
+      </p>
 
-    <p>
-      <strong>Reliability:</strong>
-      <%= @transit_line.reliability %>
-    </p>
+      <p>
+        <strong>Restrictions:</strong>
+        <%= @transit_line.restrictions %>
+      </p>
+    </div>
+    <div class="col-lg-6">
+      <p>
+        <strong>Reliability:</strong>
+        <%= @transit_line.reliability %>
+      </p>
 
-    <p>
-      <strong>Avg price:</strong>
-      <%= @transit_line.avg_price %>
-    </p>
+      <p>
+        <strong>Avg price:</strong>
+        P<%= sprintf('%.2f', @transit_line.avg_price) %>
+      </p>
+    </div>
   </div>
 
   <h4>List of Transit Stops Under <%= @transit_line.name %></h4>
   <table class="table">
     <thead>
       <tr>
+        <th></th>
         <th>Name</th>
         <th>Type</th>
-        <th>Status</th>
         <th>Longitude</th>
         <th>Latitude</th>
         <th colspan="3"></th>
@@ -72,22 +86,25 @@
     <tbody>
       <% @transit_line.transit_stops.each do |transit_stop| %>
       <tr>
+         <td class="text-center"><i class="fas fa-circle
+            <% if transit_stop.status == "Full Operation" %>
+              text-success
+            <% else %>
+              text-danger
+            <% end %>
+            ">
+            </i>
+        </td>
         <td><%= transit_stop.name %></td>
         <td><%= transit_stop.kind %></td>
-        <td><%= transit_stop.status %></td>
         <td><%= transit_stop.longitude %></td>
         <td><%= transit_stop.latitude %></td>
-        <td><%= link_to 'Show', transit_stop %></td>
-        <td><%= link_to 'Edit', edit_transit_stop_path(transit_stop) %></td>
-        <td><%= link_to 'Destroy', transit_stop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       <td><a href="<%= transit_stop_path(transit_stop) %>"><i class="fas fa-eye"></i></a> </td>
+        <td><a href="<%= edit_transit_stop_path(transit_stop) %>"><i class="fas fa-edit"></i></a></td>
+        <td><a href="<%= transit_stop_path(transit_stop) %>" rel="no-follow" data-method="delete" data-confirm="Are you sure you want to remove <%= transit_stop.name %>?"><i class="fas fa-times"></i></a></td>
       </tr>
       <% end %>
     </tbody>
   </table>
-
-
-
-  <%= link_to 'Edit', edit_transit_line_path(@transit_line) %> |
-  <%= link_to 'Back', transit_lines_path %>
-
+ 
 </div>

@@ -29,6 +29,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
 
@@ -40,13 +41,13 @@
       <%= render 'layouts/header' %>
 
         <%# This is placed so footer will stay below the pages %>
-        <div class="site-content py-5">
+        <div class="site-content">
 
           <%= yield %>
 
         </div>
 
-        <div class="container">
+        <div class="container py-3 my-3 border border-secondary">
           <%= debug(params) if Rails.env.development? %>
         </div>
       <%= render 'layouts/footer' %>

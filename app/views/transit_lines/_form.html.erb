@@ -1,49 +1,54 @@
 <%= form_with(model: transit_line, local: true) do |form| %>
-  <% if transit_line.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(transit_line.errors.count, "error") %> prohibited this transit_line from being saved:</h2>
 
-      <ul>
-      <% transit_line.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% if transit_line.errors.any? %>
+
+    <div class="alert alert-info" role="alert" id="error_explanation">
+      <%= pluralize(transit_line.errors.count, "error") %> prohibited this favorite from being saved:
+        <small>
+    
+          <% transit_line.errors.full_messages.each do |message| %>
+            <span class="d-block py-1 ml-2"><%= message %></span>
+          <% end %>
+     
+        </small>
     </div>
   <% end %>
 
   <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, :class => 'form-control'  %>
+  </div>
+
+
+  <div class="field">
     <%= form.label :status %>
-    <%= form.text_field :status %>
+    <%= form.text_field :status , :class => 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :operating_hours %>
-    <%= form.text_field :operating_hours %>
+    <%= form.text_field :operating_hours , :class => 'form-control'  %>
   </div>
 
   <div class="field">
-    <%= form.label :type %>
-    <%= form.text_field :type %>
+    <%= form.label :kind %>
+    <%= form.text_field :kind , :class => 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :restrictions %>
-    <%= form.text_field :restrictions %>
+    <%= form.text_field :restrictions, :class => 'form-control'  %>
   </div>
 
   <div class="field">
     <%= form.label :reliability %>
-    <%= form.number_field :reliability %>
+    <%= form.number_field :reliability, :class => 'form-control'  %>
   </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
 
   <div class="field">
     <%= form.label :avg_price %>
-    <%= form.text_field :avg_price %>
+    <%= form.text_field :avg_price, :class => 'form-control'  %>
   </div>
 
   <div class="actions">

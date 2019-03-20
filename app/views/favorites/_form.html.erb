@@ -1,27 +1,35 @@
+
 <%= form_with(model: favorite, local: true) do |form| %>
   <% if favorite.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(favorite.errors.count, "error") %> prohibited this favorite from being saved:</h2>
 
-      <ul>
-      <% favorite.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="alert alert-info" role="alert" id="error_explanation">
+      <%= pluralize(favorite.errors.count, "error") %> prohibited this favorite from being saved:
+        <small>
+    
+          <% favorite.errors.full_messages.each do |message| %>
+            <span class="d-block py-1 ml-2"><%= message %></span>
+          <% end %>
+     
+        </small>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="row">
+    <div class="field col-lg-4  text-center text-lg-left my-3 col-md-6">
+      <%= form.label :name %>
+      <%= form.text_field :name, :class => 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :commuter_id %>
-    <%= form.number_field :commuter_id %>
-  </div>
+    <div class="field col-lg-4 my-3 inline-block col-md-6">
+      <%= form.label :commuter_id %>
+      <%= form.number_field :commuter_id ,:class => 'form-control'  %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions col-lg-4 my-3 d-flex">
+      <%= button_tag(type: "submit", class: "btn btn-warning my-auto mb-lg-0 mx-auto mr-lg-0") do %>
+        <i class="far fa-check-circle"></i> Confirm
+      <% end %> 
+
+    </div>
   </div>
 <% end %>

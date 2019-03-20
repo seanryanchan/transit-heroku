@@ -8,6 +8,7 @@
   # 2.0 - 2/7/2019 - Menard Cruz - Initial Frontend layouting
   # 3.0 - 2/7/2019 - Sean Chan - ERB fixes
   # 3.1 - 2/7/2019 - Michael Marrero - Edited Comments, Added Comment block for detailed information regarding the software.
+  # 3.2 - 3/7/2019 - Menard Cruz - Updated frontend
 
   # File Creation Date: 2/5/2019
   # Development Group: Transit Development Tteam (Chan,Cruz,Marrero)
@@ -18,30 +19,34 @@
 
 <%= content_for :title, @favorite.name %>
 
-<p id="notice"><%= notice %></p>
 
-<div class="container">
-  <p>
-    <strong>Name:</strong>
-    <%= @favorite.name %>
-  </p>
-
-  <h2>List of Transit Lines</h2>
-  <!--  STUB ! TODO - Menard -->
+<div class="container py-5">
+  
+  <a href="<%=  favorites_path %>"><i class="fas fa-chevron-left"></i> Back</a>
 
 
-  <h4>Belongs to commuter: <%= @favorite.commuter.name %></h4>
+  <% if notice %>
+    <div class="alert alert-info mt-3" id="notice" role="alert">
+      <i class="fas fa-check"></i> <%= notice %>
+    </div>
+  <% end %>
+
+  <h2 class="mt-3"><%= @favorite.name %> <a class="ml-2" href="<%= edit_favorite_path(@favorite) %>"><i class="fas fa-pen-square"></i></a></h2>
+  <p>Belongs to: <%= @favorite.commuter.name %></p>
+ 
+  <hr>
 
 
   <!--
     Displays more details on the Favorite Route Group. Displays the list of transit lines associated with the Favorite Route Group and additional info on specific transit lines.
   -->
-  <h4>List of Transit Lines Under Favorite <%= @favorite.name %></h4>
+  <h4>List of Transit Lines</h4>
   <table class="table">
     <thead>
       <tr>
+        <th> </th>
         <th>Name</th>
-        <th>Status</th>
+        
         <th>Operating hours</th>
         <th>Type</th>
         <th>Restrictions</th>
@@ -60,22 +65,30 @@
     <tbody>
       <% @favorite.transit_lines.each do |transit_line| %>
       <tr>
+        <td class="text-center"><i class="fas fa-circle
+            <% if transit_line.status == "Full Operation" %>
+              text-success
+            <% else %>
+              text-danger
+            <% end %>
+            ">
+            </i>
+        </td>
         <td><%= transit_line.name %></td>
-        <td><%= transit_line.status %></td>
+     
         <td><%= transit_line.operating_hours %></td>
         <td><%= transit_line.kind %></td>
         <td><%= transit_line.restrictions %></td>
         <td><%= transit_line.reliability %></td>
-        <td><%= transit_line.avg_price %></td>
-        <td><%= link_to 'Show', transit_line %></td>
-        <td><%= link_to 'Edit', edit_transit_line_path(transit_line) %></td>
-        <td><%= link_to 'Destroy', transit_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>P<%= sprintf('%.2f', transit_line.avg_price) %></td>
+
+        <td><a href="<%= transit_line_path(transit_line) %>"><i class="fas fa-eye"></i></a> </td>
+        <td><a href="<%= edit_transit_line_path(transit_line) %>"><i class="fas fa-edit"></i></a></td>
+        <td><a href="<%= transit_line_path(transit_line) %>" rel="no-follow" data-method="delete" data-confirm="Are you sure you want to remove <%= transit_line.name %>?"><i class="fas fa-times"></i></a></td>
       </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to 'Edit', edit_favorite_path(@favorite) %> |
-  <%= link_to 'Back', favorites_path %>
 
 </div>
 

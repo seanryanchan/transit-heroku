@@ -1,4 +1,4 @@
-<!-- 
+<!--
   # License
   # This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo
   # of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019
@@ -8,25 +8,48 @@
   # 2.0 - 2/7/2019 - Menard Cruz - Initial Frontend layouting
   # 3.0 - 2/7/2019 - Sean Chan - ERB fixes
   # 3.1 - 2/7/2019 - Michael Marrero - Edited Comments, Addec Comment block that gives detailed information on the software.
+  # 4.0 - 3/4/2019 - Michael Marrero - Added Basic Search form for Search querying Transit Lines
+  # 4.1 - 3/7/2019 - Menard Cruz - Updated Front End
 
   # File Creation Date: 2/5/2019
   # Development Group: Transit Development Tteam (Chan,Cruz,Marrero)
   # Client Group: UP Student Dormers
-  # Purpose of the Software: The project is to make a web-based application named Transit, and its main vision is to inform dormers and other temporary housed students to travel back to their 
+  # Purpose of the Software: The project is to make a web-based application named Transit, and its main vision is to inform dormers and other temporary housed students to travel back to their
   #   permanent residence of the routes and methods from their current location. Being on a budget, students are more inclined to cheaper options in favor of comfort or travel time.
 -->
 
 <% content_for :title, "Transit Lines" %>
-<p id="notice"><%= notice %></p>
 
-<div class="container">
+<div class="container py-5">
+
+  <% if notice %>
+    <div class="alert alert-info" id="notice" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+
   <h1>Transit Lines</h1>
+
+  <div class="row my-3">
+    <div class="col-lg-8 mb-3 mb-lg-0">
+      <%= form_tag transit_lines_path, :class => 'd-flex', :method => 'get' do %>
+        <%= text_field_tag :search, params[:search], :placeholder => "Name" , :class => 'form-control'%>
+        <%= submit_tag "Search", :class => 'btn btn-primary mx-3'%>
+      <% end %>
+    </div>
+    <div class="col-lg-4 d-flex">
+      <a class="ml-auto text-sm-right text-center" href="<% new_transit_line_path %>" > <button type="button" class="btn btn-warning"><i class="fas fa-plus"></i> New Transit Line</button> </a>
+    </div>
+  </div>
+
+
 
   <table class="table">
     <thead>
       <tr>
-         <th>Name</th>
-        <th>Status</th>
+        <th> </th>
+        <th>Name</th>
+
         <th>Operating hours</th>
         <th>Type</th>
         <th>Restrictions</th>
@@ -35,26 +58,47 @@
         <th colspan="3"></th>
       </tr>
     </thead>
-
+    <!--
+      Displays all the transit lines and its details associated with the Favorite Route Group's "Show" property
+      It is also possible for transit lines in Favorite Route Groups to either:
+        Show, display more details on said transit line.
+        Edit, edit the line path from the list of transit lines
+        Destroy, remove the transit line from the Favorite Route Group
+    -->
     <tbody>
+      <% i = 0 %>
+
       <% @transit_lines.each do |transit_line| %>
-        <tr>
-          <td><%= transit_line.name %></td>
-          <td><%= transit_line.status %></td>
-          <td><%= transit_line.operating_hours %></td>
-          <td><%= transit_line.kind %></td>
-          <td><%= transit_line.restrictions %></td>
-          <td><%= transit_line.reliability %></td>
-          <td><%= transit_line.avg_price %></td>
-          <td><%= link_to 'Show', transit_line %></td>
-          <td><%= link_to 'Edit', edit_transit_line_path(transit_line) %></td>
-          <td><%= link_to 'Destroy', transit_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+      <tr>
+        <td class="text-center"><i class="fas fa-circle
+            <% if transit_line.status == "Full Operation" %>
+              text-success
+            <% else %>
+              text-danger
+            <% end %>
+            ">
+            </i>
+        </td>
+        <td><%= transit_line.name %></td>
+
+        <td><%= transit_line.operating_hours %></td>
+        <td><%= transit_line.kind %></td>
+        <td><%= transit_line.restrictions %></td>
+        <td><%= transit_line.reliability %></td>
+        <td>P<%= sprintf('%.2f', transit_line.avg_price) %></td>
+
+        <td><a href="<%= transit_line_path(transit_line) %>"><i class="fas fa-eye"></i></a> </td>
+        <td><a href="<%= edit_transit_line_path(transit_line) %>"><i class="fas fa-edit"></i></a></td>
+        <td><a href="<%= transit_line_path(transit_line) %>" rel="no-follow" data-method="delete" data-confirm="Are you sure you want to remove <%= transit_line.name %>?"><i class="fas fa-times"></i></a></td>
+        <% i = 1 %>
+      </tr>
       <% end %>
     </tbody>
   </table>
 
-  <br>
-
-  <%= link_to 'New Transit Line', new_transit_line_path %>
+   <% if i == 0 %>
+      <div class="p-3 d-flex">
+        <span class="m-auto">There are no transit lines to show.</span>
+      </div>
+    <% end %>
 </div>

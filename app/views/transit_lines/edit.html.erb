@@ -1,7 +1,26 @@
+<!-- 
+  # License
+  # This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo
+  # of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019
+
+  # Code History
+  # 1.0 - 2/5/2019 - Sean Chan - Initial File
+  # 2.0 - 2/7/2019 - Menard Cruz - Initial Frontend layouting
+  # 3.0 - 2/7/2019 - Sean Chan - ERB fixes
+  # 3.1 - 2/7/2019 - Michael Marrero - Edited Comments, Addec Comment block that gives detailed information on the software.
+  # 3.2 - 3/7/2019 - Menard Cruz - Updated Front End
+
+  # File Creation Date: 2/5/2019
+  # Development Group: Transit Development Tteam (Chan,Cruz,Marrero)
+  # Client Group: UP Student Dormers
+  # Purpose of the Software: The project is to make a web-based application named Transit, and its main vision is to inform dormers and other temporary housed students to travel back to their 
+  #   permanent residence of the routes and methods from their current location. Being on a budget, students are more inclined to cheaper options in favor of comfort or travel time.
+-->
+
 <%= content_for :title, "Editing " + @transit_line.name %>
 
-<div class="container">
-  <h1>Editing Transit Line</h1>
+<div class="container py-5">
+  <h1>Editing <%= @transit_line.name %></h1>
 
   <%= render 'form', transit_line: @transit_line %>
 

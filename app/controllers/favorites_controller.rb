@@ -5,6 +5,8 @@
   # Code History
   # 1.0 - 2/5/2019 - Sean Chan - Initial File
   # 1.1 - 2/7/2019 - Michael Marrero - Edited Comments, Added Comment block for detailed information regarding the software.
+  # 1.2 - 2/18/2019 - Michael Marrero - Added Edit Favorite Group Route Functions
+  # 2.0 - 2/20/2019 - Michael Marrero - Edit Add/Delete Transit Lines from FRG
 
   # File Creation Date: 2/5/2019
   # Development Group: Transit Development Tteam (Chan,Cruz,Marrero)
@@ -38,6 +40,7 @@ class FavoritesController < ApplicationController
   # GET /favorites/1/edit
   # Editing a Favorite Route Group's Transit Lines that are associated with it, its name, and to whom the Favorite Route Group is deicated to.
   def edit
+    @transit_lines = TransitLine.all
   end
 
   # POST /favorites
@@ -81,6 +84,27 @@ class FavoritesController < ApplicationController
       format.html { redirect_to favorites_url, notice: 'Favorite was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # PATCH /favorites/1/add_favorite/1
+  # Updates the Favorite Route Groups by Adding Transit Lines
+  def addition
+    @favorite = Favorite.find(params[:id])
+    @transit_line = TransitLine.find(params[:add_id])
+    @favorite.transit_lines.push(@transit_line)
+    @transit_lines = TransitLine.all
+    render( :edit, locals: {id: @favorite.id})
+    # redirect_to @favorite
+  end
+
+  # PATCH /favorites/1/remove_favorite/1
+  # Updates the Favorite Route Groups by Deleting Transit Lines
+  def removal
+    @favorite = Favorite.find(params[:id])
+    @favorite.transit_lines.delete(params[:remove_id])
+    @transit_lines = TransitLine.all
+    render( :edit, locals: {id: @favorite.id})
+    # redirect_to @favorite
   end
 
   private

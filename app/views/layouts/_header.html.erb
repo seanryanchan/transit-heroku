@@ -14,15 +14,21 @@
   #   permanent residence of the routes and methods from their current location. Being on a budget, students are more inclined to cheaper options in favor of comfort or travel time.
 -->
 
-<nav class="navbar w-100 transit-navbar">
+<nav class="navbar w-100 transit-navbar position-fixed">
   <div class="d-flex p-2 w-100">
     <div class="container m-auto d-flex">
       <a class="transit-icon my-auto" href="<%=  root_path %>" > <h3>TRANSIT</h3> </a>
 
       <ul class="d-flex ml-auto my-auto">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Favorites", favorites_path %></li>
         <li><%= link_to "Transit Lines", transit_lines_path %></li>
+        <% if logged_in? %>
+          <li><%= link_to "Favorites", favorites_path %></li>
+          <li><%= link_to "Logout", logout_path %></li>
+        <% else %>
+          <li><%= link_to "Login", login_path %></li>
+        <% end %>
+
       </ul>
 
     </div>
