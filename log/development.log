@@ -12765,3 +12765,55 @@ Completed 200 OK in 117ms (Views: 109.2ms | ActiveRecord: 0.3ms)
   ↳ db/seeds.rb:49
   [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
   ↳ db/seeds.rb:49
+Started GET "/" for ::1 at 2019-04-04 18:29:09 +0800
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/seanryanchan/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/_flashes.html.erb (0.8ms)
+  Rendered static_pages/home.html.erb within layouts/application (8761.3ms)
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:14
+  Rendered layouts/_header.html.erb (10.1ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 9102ms (Views: 9087.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/transit_lines" for ::1 at 2019-04-04 18:29:22 +0800
+Processing by TransitLinesController#index as HTML
+  Rendering transit_lines/index.html.erb within layouts/application
+  [1m[36mTransitLine Load (0.3ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines"[0m
+  ↳ app/views/transit_lines/index.html.erb:71
+  Rendered transit_lines/index.html.erb within layouts/application (21.7ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:14
+  Rendered layouts/_header.html.erb (2.2ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 136ms (Views: 105.1ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/" for ::1 at 2019-04-04 18:29:23 +0800
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/_flashes.html.erb (1.0ms)
+  Rendered static_pages/home.html.erb within layouts/application (12.1ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:14
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 135ms (Views: 121.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/transit_lines" for ::1 at 2019-04-04 18:29:25 +0800
+Processing by TransitLinesController#index as HTML
+  Rendering transit_lines/index.html.erb within layouts/application
+  [1m[36mTransitLine Load (0.2ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines"[0m
+  ↳ app/views/transit_lines/index.html.erb:71
+  Rendered transit_lines/index.html.erb within layouts/application (5.3ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:14
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 158ms (Views: 153.9ms | ActiveRecord: 0.4ms)
+
+

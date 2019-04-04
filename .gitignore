@@ -5,30 +5,30 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-Transit/.bundle
+/.bundle
 
 # ignore macOS DS Store file
 /.DS_Store
 
 # Ignore the default SQLite database.
-Transit/db/*.sqlite3
-Transit/db/*.sqlite3-journal
+/db/*.sqlite3
+/db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-Transit/log/*
-Transit/tmp/*
-!Transit/log/.keep
-!Transit/tmp/.keep
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
 
 # Ignore uploaded files in development
-Transit/storage/*
-!Transit/storage/.keep
+/storage/*
+!/storage/.keep
 
-Transit/node_modules
-Transit/yarn-error.log
+/node_modules
+/yarn-error.log
 
-Transit/public/assets
+/public/assets
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
-Transit/config/master.key
+/config/master.key
