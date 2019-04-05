@@ -58,7 +58,7 @@
 
  .transit-footer{
  	min-height: 100px;
- 	height: 25vh;
+  max-height: 250vh;
  	border-top: 1px solid #ddd;
  	background-color: #eee;
  }
@@ -68,6 +68,15 @@
  	color: #f5a623 !important;
  }
 
+ #leaflet-map
+ { 
+  height: 20rem; 
+  width: 30rem;
+}
+
+.leaflet-routing-container {
+    display: none;
+}
 
 
  /* Media */

@@ -3,7 +3,7 @@
   <% if transit_line.errors.any? %>
 
     <div class="alert alert-info" role="alert" id="error_explanation">
-      <%= pluralize(transit_line.errors.count, "error") %> prohibited this favorite from being saved:
+      <%= pluralize(transit_line.errors.count, "error") %> prohibited this transit line from being saved:
         <small>
     
           <% transit_line.errors.full_messages.each do |message| %>
@@ -51,7 +51,9 @@
     <%= form.text_field :avg_price, :class => 'form-control'  %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions my-3 d-flex">
+      <%= button_tag(type: "submit", class: "btn btn-warning my-auto mx-auto") do %>
+        <i class="far fa-check-circle"></i> Confirm
+      <% end %> 
   </div>
 <% end %>

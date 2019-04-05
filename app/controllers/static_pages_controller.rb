@@ -16,5 +16,10 @@
 
 class StaticPagesController < ApplicationController
   def home
+    if logged_in?
+      render 'commuters/show'
+    else
+      render 'static_pages/home'
+    end
   end
 end

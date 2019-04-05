@@ -1,42 +1,53 @@
 <%= form_with(model: transit_stop, local: true) do |form| %>
-  <% if transit_stop.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(transit_stop.errors.count, "error") %> prohibited this transit_stop from being saved:</h2>
 
-      <ul>
-      <% transit_stop.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+   <% if transit_stop.errors.any? %>
+
+    <div class="alert alert-info" role="alert" id="error_explanation">
+      <%= pluralize(transit_stop.errors.count, "error") %> prohibited this transit stop from being saved:
+        <small>
+    
+          <% transit_stop.errors.full_messages.each do |message| %>
+            <span class="d-block py-1 ml-2"><%= message %></span>
+          <% end %>
+     
+        </small>
     </div>
   <% end %>
+  <div class="row">
+    <div class="field col-lg-6">
+      <%= form.label :name %>
+      <%= form.text_field :name, :class => 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <div class="field col-lg-6">
+      <%= form.label :kind, "Type" %>
+      <%= form.text_field :kind, :class => 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :kind %>
-    <%= form.text_field :kind %>
+  <div class="row">
+
+    <div class="field col-lg-6">
+      <%= form.label :status %>
+      <%= form.text_field :status, :class => 'form-control' %>
+    </div> 
+
+    <div class="field col-lg-3 col-6 mx-auto">
+      <%= form.label :latitude %>
+      <%= form.text_field :latitude, :class => 'form-control lat' %>
+    </div>
+
+    <div class="field col-lg-3 col-6 mx-auto">
+      <%= form.label :longitude %>
+      <%= form.text_field :longitude, :class => 'form-control lng' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
 
-  <div class="field">
-    <%= form.label :longitude %>
-    <%= form.text_field :longitude %>
-  </div>
+  <div class="actions my-3 d-flex">
+      <%= button_tag(type: "submit", class: "btn btn-warning my-4 mx-auto") do %>
+        <i class="far fa-check-circle"></i> Confirm
+      <% end %> 
 
-  <div class="field">
-    <%= form.label :latitude %>
-    <%= form.text_field :latitude %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    </div>
 <% end %>

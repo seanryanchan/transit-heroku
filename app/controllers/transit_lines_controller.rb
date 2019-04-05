@@ -6,6 +6,7 @@
   # 1.0 - 2/5/2019 - Menard Cruz - Initial File
   # 1.1 - 2/7/2019 - Michael Marrero - Edited Comments, Added Comment Block that gives detailed information on the software.
   # 2.0 - 3/4/2019 - Michael Marrero - Edited the index method to reflect search query results on transit lines
+  # 3.0 - 3/20/2019 - Michael Marrero - Added the Advanced search options
 
   # File Creation Date: 2/5/2019
   # Development Group: Transit Development Tteam (Chan,Cruz,Marrero)
@@ -24,11 +25,29 @@ class TransitLinesController < ApplicationController
   end
 
   def search
-    if (params[:search])
-      @transit_lines = TransitLine.where(["name LIKE ?","%#{params[:search]}%"])
+    @transit_lines = TransitLine.all
+    if (params[:search].present? or params[:kind].present? or params[:operating_hours].present? or params[:reliability].present? or params[:min_price].present? or params[:max_price].present?)
+      @transit_lines = @transit_lines.where(["name LIKE ?", "%#{params[:search]}%"])
+      @transit_lines = @transit_lines.where(["kind LIKE ?", "%#{params[:kind]}%"]) if params[:kind].present?
+
+      #@transit_lines = @transit_lines.where(["#{:start_time.to_s.to_i} <= ?", "#{((DateTime.parse(params[:operating_hours])).strftime("%H%M"))}".to_i]) if params[:operating_hours].present?
+      @transit_lines = @transit_lines.where(["reliability LIKE ?", "%#{params[:reliability]}%"]) if params[:reliability].present?
+      @transit_lines = @transit_lines.where(["avg_price >= ?", params[:min_price].to_f]) if params[:min_price].present?
+      @transit_lines = @transit_lines.where(["avg_price <= ?", params[:max_price].to_f]) if params[:max_price].present?
+      (listOfLinesWithinHours = []
+        for i in @transit_lines
+          startTime = DateTime.parse(i.start_time)
+          endTime = DateTime.parse(i.close_time)
+          if( startTime <= DateTime.parse(params[:operating_hours]) && DateTime.parse(params[:operating_hours]) <= endTime || startTime == endTime)
+          listOfLinesWithinHours.push(i)
+          end
+        end
+      @transit_lines = listOfLinesWithinHours) if params[:operating_hours].present?
+
     else
       @transit_lines = TransitLine.all
     end
+
     render 'index'
   end
 
@@ -94,6 +113,6 @@ class TransitLinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transit_line_params
-      params.require(:transit_line).permit(:status, :operating_hours, :kind, :restrictions, :reliability, :name, :avg_price)
+      params.require(:transit_line).permit(:status, :operating_hours, :kind, :restrictions, :reliability, :name, :avg_price, :start_time, :close_time)
     end
 end

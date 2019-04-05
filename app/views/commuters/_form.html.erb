@@ -1,37 +1,50 @@
 <%= form_for( @commuter, url: create_commuter_path, class: :form, method: :post ) do |form| %>
-  <% if commuter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(commuter.errors.count, "error") %> prohibited this commuter from being saved:</h2>
 
-      <ul>
-      <% commuter.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="d-flex w-100">
+    <div class="w-50 mx-auto">
+      <h2 class="text-center">Sign Up</h2>
+
+
+    <% if commuter.errors.any? %>
+
+    <div class="alert alert-info" role="alert" id="error_explanation">
+      <%= pluralize(commuter.errors.count, "error") %> prohibited this user from being registered:
+        <small>
+    
+          <% commuter.errors.full_messages.each do |message| %>
+            <span class="d-block py-1 ml-2"><%= message %></span>
+          <% end %>
+     
+        </small>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name , :class => 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= form.label :email %>
+        <%= form.text_field :email , :class => 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= form.label :password %>
+        <%= form.password_field :password , :class => 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirmation , :class => 'form-control' %>
+      </div>
+
+      <div class="actions d-flex my-3">
+         <%= button_tag(type: "submit", class: "btn btn-warning my-auto mx-auto") do %>
+          <i class="fas fa-sign-in-alt"></i> Sign Up
+        <% end %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.text_field :password %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.text_field :password_confirmation %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

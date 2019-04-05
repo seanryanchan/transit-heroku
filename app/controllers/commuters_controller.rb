@@ -24,6 +24,7 @@ class CommutersController < ApplicationController
   def create
     @commuter = Commuter.new(user_params)
     if @commuter.save
+      log_in(@commuter)
       flash[:success] = "Welcome to Transit!"
       redirect_to @commuter
     else
