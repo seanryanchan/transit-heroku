@@ -5,30 +5,25 @@
     <div class="alert alert-info" role="alert" id="error_explanation">
       <%= pluralize(favorite.errors.count, "error") %> prohibited this favorite from being saved:
         <small>
-    
+
           <% favorite.errors.full_messages.each do |message| %>
             <span class="d-block py-1 ml-2"><%= message %></span>
           <% end %>
-     
+
         </small>
     </div>
   <% end %>
 
   <div class="row">
     <div class="field col-lg-4  text-center text-lg-left my-3 col-md-6">
-      <%= form.label :name %>
+      <%= form.label :name, "New Name" %>
       <%= form.text_field :name, :class => 'form-control' %>
-    </div>
-
-    <div class="field col-lg-4 my-3 inline-block col-md-6">
-      <%= form.label :commuter_id %>
-      <%= form.number_field :commuter_id ,:class => 'form-control'  %>
     </div>
 
     <div class="actions col-lg-4 my-3 d-flex">
       <%= button_tag(type: "submit", class: "btn btn-warning my-auto mb-lg-0 mx-auto mr-lg-0") do %>
         <i class="far fa-check-circle"></i> Confirm
-      <% end %> 
+      <% end %>
 
     </div>
   </div>

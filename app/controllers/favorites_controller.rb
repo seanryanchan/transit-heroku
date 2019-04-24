@@ -27,6 +27,19 @@ class FavoritesController < ApplicationController
   # GET /favorites/1.json
   # Should show the Favorite New Group's information, along with the transit lines associated with it.
   def show
+    @string = ""
+    @flag = 0
+    colorArray = FavoritesHelper::COLORSARRAY
+
+    @favorite.transit_lines.each do |transit_line|
+      transit_line.transit_stops.each do |transit_stop|
+        if @flag == 1
+         @string = @string + ','
+        end
+        @string = @string + "\"" + transit_stop.name + "\""
+        @flag = 1
+      end
+    end
   end
 
   # GET /favorites/new
@@ -47,16 +60,21 @@ class FavoritesController < ApplicationController
   # POST /favorites.json
   # Creation of a new Favorite Route Group
   def create
-    @favorite = Favorite.new(favorite_params)
-    @commuters = Commuter.all
-    respond_to do |format|
-      if @favorite.save
-        format.html { redirect_to @favorite, notice: 'Favorite was successfully created.' }
-        format.json { render :show, status: :created, location: @favorite }
-      else
-        format.html { render :new }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
+    if logged_in?
+      @favorite = Favorite.new(favorite_params)
+      @favorite.commuter_id = current_user.id
+      @commuters = Commuter.all
+      respond_to do |format|
+        if @favorite.save
+          format.html { redirect_to @favorite, notice: 'Favorite was successfully created.' }
+          format.json { render :show, status: :created, location: @favorite }
+        else
+          format.html { render :new }
+          format.json { render json: @favorite.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to root_path
     end
   end
 
