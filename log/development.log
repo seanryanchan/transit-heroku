@@ -13256,3 +13256,1283 @@ Completed 200 OK in 202ms (Views: 188.6ms | ActiveRecord: 1.7ms)
   ↳ db/seeds.rb:66
   [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
   ↳ db/seeds.rb:66
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "commuters"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "commuters" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "departure_times"[0m
+  ↳ db/schema.rb:23
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "departure_times" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_lines_transit_stops_id" integer, "departure_time" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "commuter_id" integer)[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_commuter_id" ON "favorites" ("commuter_id")[0m
+  ↳ db/schema.rb:30
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites_transit_lines"[0m
+  ↳ db/schema.rb:38
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "favorites_transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "favorite_id" integer)[0m
+  ↳ db/schema.rb:38
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines"[0m
+  ↳ db/schema.rb:43
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar, "operating_hours" varchar, "restrictions" varchar, "reliability" integer, "name" varchar, "avg_price" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "kind" varchar, "start_time" varchar, "close_time" varchar)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines_stops"[0m
+  ↳ db/schema.rb:57
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "transit_lines_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "transit_stop_id" integer, "stop_number" integer)[0m
+  ↳ db/schema.rb:57
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_stops"[0m
+  ↳ db/schema.rb:63
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "transit_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "status" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "latitude" float, "longitude" float, "kind" varchar)[0m
+  ↳ db/schema.rb:63
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190320071151)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190204144554),
+(20190206085910),
+(20190207080253),
+(20190128054701),
+(20190207043148),
+(20190128033333),
+(20190128034822),
+(20190207015131),
+(20190205054745),
+(20190130064854),
+(20190207044620);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-04-25 15:44:19.641168"], ["updated_at", "2019-04-25 15:44:19.641168"]]
+  ↳ db/schema.rb:13
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "commuters"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "commuters" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "departure_times"[0m
+  ↳ db/schema.rb:23
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "departure_times" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_lines_transit_stops_id" integer, "departure_time" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "commuter_id" integer)[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_commuter_id" ON "favorites" ("commuter_id")[0m
+  ↳ db/schema.rb:30
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites_transit_lines"[0m
+  ↳ db/schema.rb:38
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "favorites_transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "favorite_id" integer)[0m
+  ↳ db/schema.rb:38
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines"[0m
+  ↳ db/schema.rb:43
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar, "operating_hours" varchar, "restrictions" varchar, "reliability" integer, "name" varchar, "avg_price" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "kind" varchar, "start_time" varchar, "close_time" varchar)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines_stops"[0m
+  ↳ db/schema.rb:57
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "transit_lines_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "transit_stop_id" integer, "stop_number" integer)[0m
+  ↳ db/schema.rb:57
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_stops"[0m
+  ↳ db/schema.rb:63
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "transit_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "status" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "latitude" float, "longitude" float, "kind" varchar)[0m
+  ↳ db/schema.rb:63
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190320071151)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190204144554),
+(20190206085910),
+(20190207080253),
+(20190128054701),
+(20190207043148),
+(20190128033333),
+(20190128034822),
+(20190207015131),
+(20190205054745),
+(20190130064854),
+(20190207044620);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-04-25 15:44:19.699360"], ["updated_at", "2019-04-25 15:44:19.699360"]]
+  ↳ db/schema.rb:13
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2019-04-25 15:44:19.706065"], ["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mCommuter Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "commuters" WHERE LOWER("commuters"."email") = LOWER(?) LIMIT ?[0m  [["email", "sean@gmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mCommuter Create (0.6ms)[0m  [1m[32mINSERT INTO "commuters" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Sean"], ["email", "sean@gmail.com"], ["created_at", "2019-04-25 15:44:21.612686"], ["updated_at", "2019-04-25 15:44:21.612686"], ["password_digest", "$2a$10$Bn2aDElbZ8L3SxLzZ8nCCe2rZzkd5oFxmi6KhJ5Yl90cxNaMrGc6O"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[36mCommuter Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "commuters" WHERE LOWER("commuters"."email") = LOWER(?) LIMIT ?[0m  [["email", "mmcruz@gmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mCommuter Create (0.4ms)[0m  [1m[32mINSERT INTO "commuters" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Menard"], ["email", "mmcruz@gmail.com"], ["created_at", "2019-04-25 15:44:21.686630"], ["updated_at", "2019-04-25 15:44:21.686630"], ["password_digest", "$2a$10$qFr0suCHDYd5AhrCmqaA2eNpZIUULKciUqeiLOHpQQoqap0fMooYa"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:19
+  [1m[36mCommuter Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "commuters" WHERE LOWER("commuters"."email") = LOWER(?) LIMIT ?[0m  [["email", "mio@gmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:19
+  [1m[36mCommuter Create (0.6ms)[0m  [1m[32mINSERT INTO "commuters" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Michael"], ["email", "mio@gmail.com"], ["created_at", "2019-04-25 15:44:21.764154"], ["updated_at", "2019-04-25 15:44:21.764154"], ["password_digest", "$2a$10$0YXaf.r5oiKlvYcTMYOJsO3q5mdB0bxU1OjDySi6YFA7rg8rJDSfi"]]
+  ↳ db/seeds.rb:19
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:19
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[36mCommuter Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "commuters" WHERE LOWER("commuters"."email") = LOWER(?) LIMIT ?[0m  [["email", "user@email.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:20
+  [1m[36mCommuter Create (0.4ms)[0m  [1m[32mINSERT INTO "commuters" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "User"], ["email", "user@email.com"], ["created_at", "2019-04-25 15:44:21.840596"], ["updated_at", "2019-04-25 15:44:21.840596"], ["password_digest", "$2a$10$nCeg0qkgNPc1RQP5anyLgOcX/lFYIMCEYLpXWVJp9qvAcLHX8ut7q"]]
+  ↳ db/seeds.rb:20
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[36mCommuter Load (0.4ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:23
+  [1m[36mFavorite Create (0.6ms)[0m  [1m[32mINSERT INTO "favorites" ("name", "created_at", "updated_at", "commuter_id") VALUES (?, ?, ?, ?)[0m  [["name", "Sean's Route to Pagudpud"], ["created_at", "2019-04-25 15:44:21.957119"], ["updated_at", "2019-04-25 15:44:21.957119"], ["commuter_id", 1]]
+  ↳ db/seeds.rb:23
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mFavorite Create (0.7ms)[0m  [1m[32mINSERT INTO "favorites" ("name", "created_at", "updated_at", "commuter_id") VALUES (?, ?, ?, ?)[0m  [["name", "Menard's Route to Naga"], ["created_at", "2019-04-25 15:44:21.963467"], ["updated_at", "2019-04-25 15:44:21.963467"], ["commuter_id", 2]]
+  ↳ db/seeds.rb:24
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:25
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:25
+  [1m[36mFavorite Create (0.5ms)[0m  [1m[32mINSERT INTO "favorites" ("name", "created_at", "updated_at", "commuter_id") VALUES (?, ?, ?, ?)[0m  [["name", "Mio's Route to Pangasinan"], ["created_at", "2019-04-25 15:44:21.968994"], ["updated_at", "2019-04-25 15:44:21.968994"], ["commuter_id", 3]]
+  ↳ db/seeds.rb:25
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mTransitLine Create (0.5ms)[0m  [1m[32mINSERT INTO "transit_lines" ("status", "operating_hours", "restrictions", "reliability", "name", "avg_price", "created_at", "updated_at", "kind", "start_time", "close_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["status", "Full Operation"], ["operating_hours", "24/7"], ["restrictions", "No food"], ["reliability", 8], ["name", "Five Star"], ["avg_price", 20.0], ["created_at", "2019-04-25 15:44:21.996443"], ["updated_at", "2019-04-25 15:44:21.996443"], ["kind", "Bus"], ["start_time", "12AM"], ["close_time", "12AM"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:30
+  [1m[36mTransitLine Create (0.5ms)[0m  [1m[32mINSERT INTO "transit_lines" ("status", "operating_hours", "restrictions", "reliability", "name", "avg_price", "created_at", "updated_at", "kind", "start_time", "close_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["status", "Full Operation"], ["operating_hours", "7AM - 11PM"], ["restrictions", "No food and drinks"], ["reliability", 7], ["name", "MRT-3"], ["avg_price", 30.0], ["created_at", "2019-04-25 15:44:22.000836"], ["updated_at", "2019-04-25 15:44:22.000836"], ["kind", "Train"], ["start_time", "7AM"], ["close_time", "11PM"]]
+  ↳ db/seeds.rb:30
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:30
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:32
+  [1m[36mTransitLine Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_lines" ("status", "operating_hours", "restrictions", "reliability", "name", "avg_price", "created_at", "updated_at", "kind", "start_time", "close_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["status", "Full Operation"], ["operating_hours", "7AM - 11PM"], ["restrictions", "None"], ["reliability", 9], ["name", "Green Liner"], ["avg_price", 25.0], ["created_at", "2019-04-25 15:44:22.012269"], ["updated_at", "2019-04-25 15:44:22.012269"], ["kind", "Bus"], ["start_time", "7AM"], ["close_time", "11PM"]]
+  ↳ db/seeds.rb:32
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:32
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:34
+  [1m[36mTransitLine Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_lines" ("status", "operating_hours", "restrictions", "reliability", "name", "avg_price", "created_at", "updated_at", "kind", "start_time", "close_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["status", "Full Operation"], ["operating_hours", "7AM - 11PM"], ["restrictions", "None"], ["reliability", 9], ["name", "Victory Liner"], ["avg_price", 25.0], ["created_at", "2019-04-25 15:44:22.015968"], ["updated_at", "2019-04-25 15:44:22.015968"], ["kind", "Bus"], ["start_time", "7AM"], ["close_time", "11PM"]]
+  ↳ db/seeds.rb:34
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:34
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[36mTransitStop Create (0.5ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Cubao Southbound"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.035312"], ["updated_at", "2019-04-25 15:44:22.035312"], ["latitude", 14.631], ["longitude", 121.045], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:39
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:40
+  [1m[36mTransitStop Create (0.5ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Cubao Northbound"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.041067"], ["updated_at", "2019-04-25 15:44:22.041067"], ["latitude", 14.632], ["longitude", 121.045], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:40
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:40
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:41
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Parañaque Integrated Terminal Exchange"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.045205"], ["updated_at", "2019-04-25 15:44:22.045205"], ["latitude", 14.51], ["longitude", 120.99], ["kind", "Transport Terminal"]]
+  ↳ db/seeds.rb:41
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:41
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:42
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Cubao Araneta"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.052591"], ["updated_at", "2019-04-25 15:44:22.052591"], ["latitude", 14.51], ["longitude", 120.99], ["kind", "Transport Terminal"]]
+  ↳ db/seeds.rb:42
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:42
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:43
+  [1m[36mTransitStop Create (0.5ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "UP Ayala Technohub"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.057015"], ["updated_at", "2019-04-25 15:44:22.057015"], ["latitude", 14.657252], ["longitude", 121.057616], ["kind", "Bus Stop"]]
+  ↳ db/seeds.rb:43
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:43
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:44
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Tandang Sora Avenue"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.061422"], ["updated_at", "2019-04-25 15:44:22.061422"], ["latitude", 14.663468], ["longitude", 121.068281], ["kind", "Bus Stop"]]
+  ↳ db/seeds.rb:44
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:44
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:45
+  [1m[36mTransitStop Create (0.6ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "GMA Kamuning Station"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.065353"], ["updated_at", "2019-04-25 15:44:22.065353"], ["latitude", 14.635008], ["longitude", 121.043074], ["kind", "Train Stop"]]
+  ↳ db/seeds.rb:45
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:45
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:46
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "North Avenue"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.069398"], ["updated_at", "2019-04-25 15:44:22.069398"], ["latitude", 14.652101], ["longitude", 121.032204], ["kind", "Train Stop"]]
+  ↳ db/seeds.rb:46
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:46
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:47
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Taft Avenue"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.073346"], ["updated_at", "2019-04-25 15:44:22.073346"], ["latitude", 14.537634], ["longitude", 121.002229], ["kind", "Train Stop"]]
+  ↳ db/seeds.rb:47
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:47
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:48
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Puregold Valenzuela"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.077010"], ["updated_at", "2019-04-25 15:44:22.077010"], ["latitude", 14.70893], ["longitude", 120.993755], ["kind", "Bus Stop"]]
+  ↳ db/seeds.rb:48
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:48
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:49
+  [1m[36mTransitStop Create (0.5ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Five Star Meycauayan"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.080934"], ["updated_at", "2019-04-25 15:44:22.080934"], ["latitude", 14.752572], ["longitude", 120.97503], ["kind", "Bus Stop"]]
+  ↳ db/seeds.rb:49
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:49
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:50
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Patubig / Duhat St. Bus Stop"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.084605"], ["updated_at", "2019-04-25 15:44:22.084605"], ["latitude", 14.776627], ["longitude", 120.959013], ["kind", "Bus Stop"]]
+  ↳ db/seeds.rb:50
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:50
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:51
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "SM City Pampanga Jeepney Terminal"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.088224"], ["updated_at", "2019-04-25 15:44:22.088224"], ["latitude", 15.05157], ["longitude", 120.700337], ["kind", "Jeepney Terminal"]]
+  ↳ db/seeds.rb:51
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:51
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:52
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Robinsons Starmills"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.091537"], ["updated_at", "2019-04-25 15:44:22.091537"], ["latitude", 15.049008], ["longitude", 120.69832], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:52
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:52
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:53
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Marquee Mall"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.095053"], ["updated_at", "2019-04-25 15:44:22.095053"], ["latitude", 15.162366], ["longitude", 120.608489], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:53
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:53
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:54
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Dau Bus Terminal"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.098292"], ["updated_at", "2019-04-25 15:44:22.098292"], ["latitude", 15.178267], ["longitude", 120.589395], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:54
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:54
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:55
+  [1m[36mTransitStop Create (0.5ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Magalang-Macalabat Terminal"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.101704"], ["updated_at", "2019-04-25 15:44:22.101704"], ["latitude", 15.222026], ["longitude", 120.575341], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:55
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:55
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:56
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Baguio Victory Liner Bus Terminal"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.105712"], ["updated_at", "2019-04-25 15:44:22.105712"], ["latitude", 16.40557], ["longitude", 120.602706], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:56
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:56
+  [1m[36mTransitStop Load (0.4ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 1]]
+  ↳ db/seeds.rb:60
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:60
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.6ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 1], ["transit_stop_id", 11]]
+  ↳ db/seeds.rb:60
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.2ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 1], ["transit_stop_id", 10]]
+  ↳ db/seeds.rb:60
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 1], ["transit_stop_id", 2]]
+  ↳ db/seeds.rb:60
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 1], ["transit_stop_id", 3]]
+  ↳ db/seeds.rb:60
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:60
+  [1m[36mTransitStop Load (0.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 2]]
+  ↳ db/seeds.rb:61
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:61
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.5ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 2], ["transit_stop_id", 8]]
+  ↳ db/seeds.rb:61
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 2], ["transit_stop_id", 7]]
+  ↳ db/seeds.rb:61
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 2], ["transit_stop_id", 9]]
+  ↳ db/seeds.rb:61
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:61
+  [1m[36mTransitStop Load (0.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 3]]
+  ↳ db/seeds.rb:62
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:62
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["transit_stop_id", 16]]
+  ↳ db/seeds.rb:62
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["transit_stop_id", 14]]
+  ↳ db/seeds.rb:62
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["transit_stop_id", 12]]
+  ↳ db/seeds.rb:62
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["transit_stop_id", 15]]
+  ↳ db/seeds.rb:62
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["transit_stop_id", 1]]
+  ↳ db/seeds.rb:62
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["transit_stop_id", 3]]
+  ↳ db/seeds.rb:62
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:62
+  [1m[36mTransitStop Load (0.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 4]]
+  ↳ db/seeds.rb:63
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 18]]
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 17]]
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 16]]
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 15]]
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 14]]
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 8]]
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 2]]
+  ↳ db/seeds.rb:63
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:63
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:64
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:64
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:65
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:65
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:66
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:66
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:67
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:67
+  [1m[36mTransitLine Load (0.3ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines" INNER JOIN "favorites_transit_lines" ON "transit_lines"."id" = "favorites_transit_lines"."transit_line_id" WHERE "favorites_transit_lines"."favorite_id" = ?[0m  [["favorite_id", 1]]
+  ↳ db/seeds.rb:69
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:69
+  [1m[36mFavorite::HABTM_TransitLines Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 1], ["favorite_id", 1]]
+  ↳ db/seeds.rb:69
+  [1m[36mFavorite::HABTM_TransitLines Create (0.1ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 2], ["favorite_id", 1]]
+  ↳ db/seeds.rb:69
+  [1m[36mFavorite::HABTM_TransitLines Create (0.1ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["favorite_id", 1]]
+  ↳ db/seeds.rb:69
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:69
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:70
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:70
+  [1m[36mTransitLine Load (0.2ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines" INNER JOIN "favorites_transit_lines" ON "transit_lines"."id" = "favorites_transit_lines"."transit_line_id" WHERE "favorites_transit_lines"."favorite_id" = ?[0m  [["favorite_id", 2]]
+  ↳ db/seeds.rb:72
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:72
+  [1m[36mFavorite::HABTM_TransitLines Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 2], ["favorite_id", 2]]
+  ↳ db/seeds.rb:72
+  [1m[36mFavorite::HABTM_TransitLines Create (0.1ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["favorite_id", 2]]
+  ↳ db/seeds.rb:72
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:72
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:73
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:73
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:78
+  [1m[36mTransitLine Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_lines" ("status", "operating_hours", "restrictions", "reliability", "name", "avg_price", "created_at", "updated_at", "kind", "start_time", "close_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["status", "Full Operation"], ["operating_hours", "8AM - 10PM"], ["restrictions", "None"], ["reliability", 8], ["name", "UP-SM North EDSA Jeep"], ["avg_price", 11.0], ["created_at", "2019-04-25 15:44:22.229663"], ["updated_at", "2019-04-25 15:44:22.229663"], ["kind", "Jeep"], ["start_time", "8AM"], ["close_time", "10PM"]]
+  ↳ db/seeds.rb:78
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:78
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:80
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "UP Diliman"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.233819"], ["updated_at", "2019-04-25 15:44:22.233819"], ["latitude", 14.653796], ["longitude", 121.068538], ["kind", "School"]]
+  ↳ db/seeds.rb:80
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:80
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:81
+  [1m[36mTransitStop Create (0.7ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Philippine Coconut Authority"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.238242"], ["updated_at", "2019-04-25 15:44:22.238242"], ["latitude", 14.653625], ["longitude", 121.053138], ["kind", "Transport Terminal"]]
+  ↳ db/seeds.rb:81
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:81
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:82
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "SM North EDSA"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:44:22.247000"], ["updated_at", "2019-04-25 15:44:22.247000"], ["latitude", 14.656321], ["longitude", 121.028872], ["kind", "Transport Terminal"]]
+  ↳ db/seeds.rb:82
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:82
+  [1m[36mTransitStop Load (0.1ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 5]]
+  ↳ db/seeds.rb:78
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:78
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 5], ["transit_stop_id", 19]]
+  ↳ db/seeds.rb:78
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 5], ["transit_stop_id", 20]]
+  ↳ db/seeds.rb:78
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 5], ["transit_stop_id", 21]]
+  ↳ db/seeds.rb:78
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:78
+Started GET "/" for ::1 at 2019-04-25 23:46:48 +0800
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/seanryanchan/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#home as HTML
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/_flashes.html.erb (0.7ms)
+  Rendered static_pages/home.html.erb within layouts/application (530.3ms)
+  [1m[36mCACHE Commuter Load (0.0ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 826ms (Views: 802.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/transit_lines" for ::1 at 2019-04-25 23:46:51 +0800
+Processing by TransitLinesController#index as HTML
+  Rendering transit_lines/index.html.erb within layouts/application
+  [1m[36mTransitLine Load (0.5ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines"[0m
+  ↳ app/views/transit_lines/index.html.erb:86
+  Rendered transit_lines/index.html.erb within layouts/application (17.2ms)
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 147ms (Views: 125.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/transit_lines/2" for ::1 at 2019-04-25 23:46:54 +0800
+Processing by TransitLinesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTransitLine Load (0.3ms)[0m  [1m[34mSELECT  "transit_lines".* FROM "transit_lines" WHERE "transit_lines"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/transit_lines_controller.rb:111
+  Rendering transit_lines/show.html.erb within layouts/application
+  [1m[36mTransitStop Load (0.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 2]]
+  ↳ app/views/transit_lines/show.html.erb:46
+  Rendered transit_lines/show.html.erb within layouts/application (31.5ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (1.7ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 122ms (Views: 108.6ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/transit_lines/2" for ::1 at 2019-04-25 23:48:06 +0800
+Processing by TransitLinesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTransitLine Load (0.7ms)[0m  [1m[34mSELECT  "transit_lines".* FROM "transit_lines" WHERE "transit_lines"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/transit_lines_controller.rb:111
+  Rendering transit_lines/show.html.erb within layouts/application
+  [1m[36mTransitStop Load (0.3ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 2]]
+  ↳ app/views/transit_lines/show.html.erb:46
+  Rendered transit_lines/show.html.erb within layouts/application (5.0ms)
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (1.8ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 112ms (Views: 105.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/transit_lines" for ::1 at 2019-04-25 23:48:15 +0800
+Processing by TransitLinesController#index as HTML
+  Rendering transit_lines/index.html.erb within layouts/application
+  [1m[36mTransitLine Load (0.3ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines"[0m
+  ↳ app/views/transit_lines/index.html.erb:86
+  Rendered transit_lines/index.html.erb within layouts/application (7.3ms)
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 123ms (Views: 122.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/transit_lines/3" for ::1 at 2019-04-25 23:48:18 +0800
+Processing by TransitLinesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTransitLine Load (0.3ms)[0m  [1m[34mSELECT  "transit_lines".* FROM "transit_lines" WHERE "transit_lines"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/transit_lines_controller.rb:111
+  Rendering transit_lines/show.html.erb within layouts/application
+  [1m[36mTransitStop Load (0.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 3]]
+  ↳ app/views/transit_lines/show.html.erb:46
+  Rendered transit_lines/show.html.erb within layouts/application (3.9ms)
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 95ms (Views: 86.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/transit_lines/2" for ::1 at 2019-04-25 23:48:34 +0800
+Processing by TransitLinesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTransitLine Load (0.4ms)[0m  [1m[34mSELECT  "transit_lines".* FROM "transit_lines" WHERE "transit_lines"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/transit_lines_controller.rb:111
+  Rendering transit_lines/show.html.erb within layouts/application
+  [1m[36mTransitStop Load (0.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 2]]
+  ↳ app/views/transit_lines/show.html.erb:46
+  Rendered transit_lines/show.html.erb within layouts/application (7.6ms)
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (3.9ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 147ms (Views: 140.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/transit_lines/2" for ::1 at 2019-04-25 23:48:40 +0800
+Processing by TransitLinesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTransitLine Load (0.3ms)[0m  [1m[34mSELECT  "transit_lines".* FROM "transit_lines" WHERE "transit_lines"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/transit_lines_controller.rb:111
+  Rendering transit_lines/show.html.erb within layouts/application
+  [1m[36mTransitStop Load (0.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 2]]
+  ↳ app/views/transit_lines/show.html.erb:46
+  Rendered transit_lines/show.html.erb within layouts/application (3.9ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 86ms (Views: 80.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/transit_lines" for ::1 at 2019-04-25 23:48:42 +0800
+Processing by TransitLinesController#index as HTML
+  Rendering transit_lines/index.html.erb within layouts/application
+  [1m[36mTransitLine Load (0.3ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines"[0m
+  ↳ app/views/transit_lines/index.html.erb:86
+  Rendered transit_lines/index.html.erb within layouts/application (5.7ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 87ms (Views: 85.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/transit_lines/5" for ::1 at 2019-04-25 23:48:44 +0800
+Processing by TransitLinesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTransitLine Load (0.2ms)[0m  [1m[34mSELECT  "transit_lines".* FROM "transit_lines" WHERE "transit_lines"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/transit_lines_controller.rb:111
+  Rendering transit_lines/show.html.erb within layouts/application
+  [1m[36mTransitStop Load (0.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 5]]
+  ↳ app/views/transit_lines/show.html.erb:46
+  Rendered transit_lines/show.html.erb within layouts/application (3.2ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 83ms (Views: 77.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/transit_lines/5" for ::1 at 2019-04-25 23:48:49 +0800
+Processing by TransitLinesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTransitLine Load (0.2ms)[0m  [1m[34mSELECT  "transit_lines".* FROM "transit_lines" WHERE "transit_lines"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/transit_lines_controller.rb:111
+  Rendering transit_lines/show.html.erb within layouts/application
+  [1m[36mTransitStop Load (0.1ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 5]]
+  ↳ app/views/transit_lines/show.html.erb:46
+  Rendered transit_lines/show.html.erb within layouts/application (3.4ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 77ms (Views: 71.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/transit_lines" for ::1 at 2019-04-25 23:48:52 +0800
+Processing by TransitLinesController#index as HTML
+  Rendering transit_lines/index.html.erb within layouts/application
+  [1m[36mTransitLine Load (0.3ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines"[0m
+  ↳ app/views/transit_lines/index.html.erb:86
+  Rendered transit_lines/index.html.erb within layouts/application (4.7ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 80ms (Views: 78.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/transit_lines/4" for ::1 at 2019-04-25 23:49:00 +0800
+Processing by TransitLinesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mTransitLine Load (0.3ms)[0m  [1m[34mSELECT  "transit_lines".* FROM "transit_lines" WHERE "transit_lines"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/transit_lines_controller.rb:111
+  Rendering transit_lines/show.html.erb within layouts/application
+  [1m[36mTransitStop Load (0.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 4]]
+  ↳ app/views/transit_lines/show.html.erb:46
+  Rendered transit_lines/show.html.erb within layouts/application (5.2ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 81ms (Views: 75.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/transit_lines/2" for ::1 at 2019-04-25 23:49:23 +0800
+Processing by TransitLinesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTransitLine Load (0.6ms)[0m  [1m[34mSELECT  "transit_lines".* FROM "transit_lines" WHERE "transit_lines"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/transit_lines_controller.rb:111
+  Rendering transit_lines/show.html.erb within layouts/application
+  [1m[36mTransitStop Load (0.3ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 2]]
+  ↳ app/views/transit_lines/show.html.erb:46
+  Rendered transit_lines/show.html.erb within layouts/application (4.1ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 82ms (Views: 76.2ms | ActiveRecord: 1.0ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "commuters"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "commuters" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "departure_times"[0m
+  ↳ db/schema.rb:23
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "departure_times" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_lines_transit_stops_id" integer, "departure_time" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:30
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "commuter_id" integer)[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_commuter_id" ON "favorites" ("commuter_id")[0m
+  ↳ db/schema.rb:30
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites_transit_lines"[0m
+  ↳ db/schema.rb:38
+  [1m[35m (24.5ms)[0m  [1m[35mCREATE TABLE "favorites_transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "favorite_id" integer)[0m
+  ↳ db/schema.rb:38
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines"[0m
+  ↳ db/schema.rb:43
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar, "operating_hours" varchar, "restrictions" varchar, "reliability" integer, "name" varchar, "avg_price" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "kind" varchar, "start_time" varchar, "close_time" varchar)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines_stops"[0m
+  ↳ db/schema.rb:57
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "transit_lines_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "transit_stop_id" integer, "stop_number" integer)[0m
+  ↳ db/schema.rb:57
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_stops"[0m
+  ↳ db/schema.rb:63
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "transit_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "status" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "latitude" float, "longitude" float, "kind" varchar)[0m
+  ↳ db/schema.rb:63
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190320071151)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190204144554),
+(20190206085910),
+(20190207080253),
+(20190128054701),
+(20190207043148),
+(20190128033333),
+(20190128034822),
+(20190207015131),
+(20190205054745),
+(20190130064854),
+(20190207044620);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-04-25 15:51:25.201759"], ["updated_at", "2019-04-25 15:51:25.201759"]]
+  ↳ db/schema.rb:13
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "commuters"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "commuters" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "departure_times"[0m
+  ↳ db/schema.rb:23
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "departure_times" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_lines_transit_stops_id" integer, "departure_time" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:23
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "commuter_id" integer)[0m
+  ↳ db/schema.rb:30
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_commuter_id" ON "favorites" ("commuter_id")[0m
+  ↳ db/schema.rb:30
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites_transit_lines"[0m
+  ↳ db/schema.rb:38
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "favorites_transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "favorite_id" integer)[0m
+  ↳ db/schema.rb:38
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines"[0m
+  ↳ db/schema.rb:43
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "transit_lines" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar, "operating_hours" varchar, "restrictions" varchar, "reliability" integer, "name" varchar, "avg_price" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "kind" varchar, "start_time" varchar, "close_time" varchar)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_lines_stops"[0m
+  ↳ db/schema.rb:57
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "transit_lines_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "transit_line_id" integer, "transit_stop_id" integer, "stop_number" integer)[0m
+  ↳ db/schema.rb:57
+  [1m[35m (2.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "transit_stops"[0m
+  ↳ db/schema.rb:63
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "transit_stops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "status" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "latitude" float, "longitude" float, "kind" varchar)[0m
+  ↳ db/schema.rb:63
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (3.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190320071151)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190204144554),
+(20190206085910),
+(20190207080253),
+(20190128054701),
+(20190207043148),
+(20190128033333),
+(20190128034822),
+(20190207015131),
+(20190205054745),
+(20190130064854),
+(20190207044620);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-04-25 15:51:25.330861"], ["updated_at", "2019-04-25 15:51:25.330861"]]
+  ↳ db/schema.rb:13
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Update (0.7ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2019-04-25 15:51:25.337506"], ["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mCommuter Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "commuters" WHERE LOWER("commuters"."email") = LOWER(?) LIMIT ?[0m  [["email", "sean@gmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mCommuter Create (0.8ms)[0m  [1m[32mINSERT INTO "commuters" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Sean"], ["email", "sean@gmail.com"], ["created_at", "2019-04-25 15:51:28.704909"], ["updated_at", "2019-04-25 15:51:28.704909"], ["password_digest", "$2a$10$8V1T1nWKhxkPu0KPkUqJ8.x3GUeOLpySEhuAWHV66nD04DfiBV8E."]]
+  ↳ db/seeds.rb:17
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[36mCommuter Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "commuters" WHERE LOWER("commuters"."email") = LOWER(?) LIMIT ?[0m  [["email", "mmcruz@gmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mCommuter Create (0.6ms)[0m  [1m[32mINSERT INTO "commuters" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Menard"], ["email", "mmcruz@gmail.com"], ["created_at", "2019-04-25 15:51:28.798216"], ["updated_at", "2019-04-25 15:51:28.798216"], ["password_digest", "$2a$10$EYCmaGX6ZMNcTr.DmNpXae2iFbtYSb3nKW9n0tIX55D1ek/fu1BxG"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:19
+  [1m[36mCommuter Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "commuters" WHERE LOWER("commuters"."email") = LOWER(?) LIMIT ?[0m  [["email", "mio@gmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:19
+  [1m[36mCommuter Create (0.6ms)[0m  [1m[32mINSERT INTO "commuters" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Michael"], ["email", "mio@gmail.com"], ["created_at", "2019-04-25 15:51:28.931478"], ["updated_at", "2019-04-25 15:51:28.931478"], ["password_digest", "$2a$10$CzKmvvSaHd7tPnLtaapV0eMC0lKojg17GDXhUpxRI.KqkzpRP722m"]]
+  ↳ db/seeds.rb:19
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:19
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[36mCommuter Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "commuters" WHERE LOWER("commuters"."email") = LOWER(?) LIMIT ?[0m  [["email", "user@email.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:20
+  [1m[36mCommuter Create (0.5ms)[0m  [1m[32mINSERT INTO "commuters" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "User"], ["email", "user@email.com"], ["created_at", "2019-04-25 15:51:29.017924"], ["updated_at", "2019-04-25 15:51:29.017924"], ["password_digest", "$2a$10$rn1lcH9A698xrFXkX7FaZ.S9OAiE6t/O8id1yS0ByaVHOMGV6NvFC"]]
+  ↳ db/seeds.rb:20
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[36mCommuter Load (0.6ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:23
+  [1m[36mFavorite Create (4.8ms)[0m  [1m[32mINSERT INTO "favorites" ("name", "created_at", "updated_at", "commuter_id") VALUES (?, ?, ?, ?)[0m  [["name", "Sean's Route to Pagudpud"], ["created_at", "2019-04-25 15:51:29.099897"], ["updated_at", "2019-04-25 15:51:29.099897"], ["commuter_id", 1]]
+  ↳ db/seeds.rb:23
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mFavorite Create (0.5ms)[0m  [1m[32mINSERT INTO "favorites" ("name", "created_at", "updated_at", "commuter_id") VALUES (?, ?, ?, ?)[0m  [["name", "Menard's Route to Naga"], ["created_at", "2019-04-25 15:51:29.120111"], ["updated_at", "2019-04-25 15:51:29.120111"], ["commuter_id", 2]]
+  ↳ db/seeds.rb:24
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:25
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:25
+  [1m[36mFavorite Create (0.6ms)[0m  [1m[32mINSERT INTO "favorites" ("name", "created_at", "updated_at", "commuter_id") VALUES (?, ?, ?, ?)[0m  [["name", "Mio's Route to Pangasinan"], ["created_at", "2019-04-25 15:51:29.148676"], ["updated_at", "2019-04-25 15:51:29.148676"], ["commuter_id", 3]]
+  ↳ db/seeds.rb:25
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mTransitLine Create (1.4ms)[0m  [1m[32mINSERT INTO "transit_lines" ("status", "operating_hours", "restrictions", "reliability", "name", "avg_price", "created_at", "updated_at", "kind", "start_time", "close_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["status", "Full Operation"], ["operating_hours", "24/7"], ["restrictions", "No food"], ["reliability", 8], ["name", "Five Star"], ["avg_price", 20.0], ["created_at", "2019-04-25 15:51:29.253112"], ["updated_at", "2019-04-25 15:51:29.253112"], ["kind", "Bus"], ["start_time", "12AM"], ["close_time", "12AM"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:30
+  [1m[36mTransitLine Create (0.7ms)[0m  [1m[32mINSERT INTO "transit_lines" ("status", "operating_hours", "restrictions", "reliability", "name", "avg_price", "created_at", "updated_at", "kind", "start_time", "close_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["status", "Full Operation"], ["operating_hours", "7AM - 11PM"], ["restrictions", "No food and drinks"], ["reliability", 7], ["name", "MRT-3"], ["avg_price", 30.0], ["created_at", "2019-04-25 15:51:29.265001"], ["updated_at", "2019-04-25 15:51:29.265001"], ["kind", "Train"], ["start_time", "7AM"], ["close_time", "11PM"]]
+  ↳ db/seeds.rb:30
+  [1m[35m (3.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:30
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:32
+  [1m[36mTransitLine Create (0.5ms)[0m  [1m[32mINSERT INTO "transit_lines" ("status", "operating_hours", "restrictions", "reliability", "name", "avg_price", "created_at", "updated_at", "kind", "start_time", "close_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["status", "Full Operation"], ["operating_hours", "7AM - 11PM"], ["restrictions", "None"], ["reliability", 9], ["name", "Green Liner"], ["avg_price", 25.0], ["created_at", "2019-04-25 15:51:29.273550"], ["updated_at", "2019-04-25 15:51:29.273550"], ["kind", "Bus"], ["start_time", "7AM"], ["close_time", "11PM"]]
+  ↳ db/seeds.rb:32
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:32
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:34
+  [1m[36mTransitLine Create (0.8ms)[0m  [1m[32mINSERT INTO "transit_lines" ("status", "operating_hours", "restrictions", "reliability", "name", "avg_price", "created_at", "updated_at", "kind", "start_time", "close_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["status", "Full Operation"], ["operating_hours", "7AM - 11PM"], ["restrictions", "None"], ["reliability", 9], ["name", "Victory Liner"], ["avg_price", 25.0], ["created_at", "2019-04-25 15:51:29.277812"], ["updated_at", "2019-04-25 15:51:29.277812"], ["kind", "Bus"], ["start_time", "7AM"], ["close_time", "11PM"]]
+  ↳ db/seeds.rb:34
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:34
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[36mTransitStop Create (0.7ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Cubao Southbound"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.351302"], ["updated_at", "2019-04-25 15:51:29.351302"], ["latitude", 14.631], ["longitude", 121.045], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:39
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:40
+  [1m[36mTransitStop Create (0.7ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Cubao Northbound"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.357412"], ["updated_at", "2019-04-25 15:51:29.357412"], ["latitude", 14.632], ["longitude", 121.045], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:40
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:40
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:41
+  [1m[36mTransitStop Create (1.3ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Parañaque Integrated Terminal Exchange"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.362365"], ["updated_at", "2019-04-25 15:51:29.362365"], ["latitude", 14.51], ["longitude", 120.99], ["kind", "Transport Terminal"]]
+  ↳ db/seeds.rb:41
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:41
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:42
+  [1m[36mTransitStop Create (0.7ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Cubao Araneta"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.367579"], ["updated_at", "2019-04-25 15:51:29.367579"], ["latitude", 14.51], ["longitude", 120.99], ["kind", "Transport Terminal"]]
+  ↳ db/seeds.rb:42
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:42
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:43
+  [1m[36mTransitStop Create (0.6ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "UP Ayala Technohub"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.374729"], ["updated_at", "2019-04-25 15:51:29.374729"], ["latitude", 14.657252], ["longitude", 121.057616], ["kind", "Bus Stop"]]
+  ↳ db/seeds.rb:43
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:43
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:44
+  [1m[36mTransitStop Create (1.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Tandang Sora Avenue"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.381695"], ["updated_at", "2019-04-25 15:51:29.381695"], ["latitude", 14.663468], ["longitude", 121.068281], ["kind", "Bus Stop"]]
+  ↳ db/seeds.rb:44
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:44
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:45
+  [1m[36mTransitStop Create (0.8ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "GMA Kamuning Station"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.398639"], ["updated_at", "2019-04-25 15:51:29.398639"], ["latitude", 14.635174], ["longitude", 121.043235], ["kind", "Train Stop"]]
+  ↳ db/seeds.rb:45
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:45
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:46
+  [1m[36mTransitStop Create (1.9ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "North Avenue"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.408632"], ["updated_at", "2019-04-25 15:51:29.408632"], ["latitude", 14.652101], ["longitude", 121.032204], ["kind", "Train Stop"]]
+  ↳ db/seeds.rb:46
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:46
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:47
+  [1m[36mTransitStop Create (0.5ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Taft Avenue"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.414779"], ["updated_at", "2019-04-25 15:51:29.414779"], ["latitude", 14.537634], ["longitude", 121.002229], ["kind", "Train Stop"]]
+  ↳ db/seeds.rb:47
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:47
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:48
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Puregold Valenzuela"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.418450"], ["updated_at", "2019-04-25 15:51:29.418450"], ["latitude", 14.70893], ["longitude", 120.993755], ["kind", "Bus Stop"]]
+  ↳ db/seeds.rb:48
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:48
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:49
+  [1m[36mTransitStop Create (0.6ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Five Star Meycauayan"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.421804"], ["updated_at", "2019-04-25 15:51:29.421804"], ["latitude", 14.752572], ["longitude", 120.97503], ["kind", "Bus Stop"]]
+  ↳ db/seeds.rb:49
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:49
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:50
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Patubig / Duhat St. Bus Stop"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.426471"], ["updated_at", "2019-04-25 15:51:29.426471"], ["latitude", 14.776627], ["longitude", 120.959013], ["kind", "Bus Stop"]]
+  ↳ db/seeds.rb:50
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:50
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:51
+  [1m[36mTransitStop Create (0.6ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "SM City Pampanga Jeepney Terminal"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.430807"], ["updated_at", "2019-04-25 15:51:29.430807"], ["latitude", 15.05157], ["longitude", 120.700337], ["kind", "Jeepney Terminal"]]
+  ↳ db/seeds.rb:51
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:51
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:52
+  [1m[36mTransitStop Create (0.5ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Robinsons Starmills"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.436698"], ["updated_at", "2019-04-25 15:51:29.436698"], ["latitude", 15.049008], ["longitude", 120.69832], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:52
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:52
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:53
+  [1m[36mTransitStop Create (0.5ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Marquee Mall"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.441130"], ["updated_at", "2019-04-25 15:51:29.441130"], ["latitude", 15.162366], ["longitude", 120.608489], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:53
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:53
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:54
+  [1m[36mTransitStop Create (0.7ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Dau Bus Terminal"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.445461"], ["updated_at", "2019-04-25 15:51:29.445461"], ["latitude", 15.178267], ["longitude", 120.589395], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:54
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:54
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:55
+  [1m[36mTransitStop Create (0.4ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Magalang-Macalabat Terminal"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.449641"], ["updated_at", "2019-04-25 15:51:29.449641"], ["latitude", 15.222026], ["longitude", 120.575341], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:55
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:55
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:56
+  [1m[36mTransitStop Create (0.7ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Baguio Victory Liner Bus Terminal"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.458306"], ["updated_at", "2019-04-25 15:51:29.458306"], ["latitude", 16.40557], ["longitude", 120.602706], ["kind", "Bus Terminal"]]
+  ↳ db/seeds.rb:56
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:56
+  [1m[36mTransitStop Load (0.3ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 1]]
+  ↳ db/seeds.rb:60
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:60
+  [1m[36mTransitLine::HABTM_TransitStops Create (1.4ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 1], ["transit_stop_id", 11]]
+  ↳ db/seeds.rb:60
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.2ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 1], ["transit_stop_id", 10]]
+  ↳ db/seeds.rb:60
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.2ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 1], ["transit_stop_id", 2]]
+  ↳ db/seeds.rb:60
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 1], ["transit_stop_id", 3]]
+  ↳ db/seeds.rb:60
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:60
+  [1m[36mTransitStop Load (0.3ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 2]]
+  ↳ db/seeds.rb:61
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:61
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.7ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 2], ["transit_stop_id", 8]]
+  ↳ db/seeds.rb:61
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 2], ["transit_stop_id", 7]]
+  ↳ db/seeds.rb:61
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 2], ["transit_stop_id", 9]]
+  ↳ db/seeds.rb:61
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:61
+  [1m[36mTransitStop Load (0.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 3]]
+  ↳ db/seeds.rb:62
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:62
+  [1m[36mTransitLine::HABTM_TransitStops Create (1.3ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["transit_stop_id", 16]]
+  ↳ db/seeds.rb:62
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["transit_stop_id", 14]]
+  ↳ db/seeds.rb:62
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["transit_stop_id", 12]]
+  ↳ db/seeds.rb:62
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["transit_stop_id", 15]]
+  ↳ db/seeds.rb:62
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.3ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["transit_stop_id", 1]]
+  ↳ db/seeds.rb:62
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["transit_stop_id", 3]]
+  ↳ db/seeds.rb:62
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:62
+  [1m[36mTransitStop Load (0.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 4]]
+  ↳ db/seeds.rb:63
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.7ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 18]]
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 17]]
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 16]]
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 15]]
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.2ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 14]]
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.2ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 8]]
+  ↳ db/seeds.rb:63
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.1ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 4], ["transit_stop_id", 2]]
+  ↳ db/seeds.rb:63
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:63
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:64
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:64
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:65
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:65
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:66
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:66
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:67
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:67
+  [1m[36mTransitLine Load (0.6ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines" INNER JOIN "favorites_transit_lines" ON "transit_lines"."id" = "favorites_transit_lines"."transit_line_id" WHERE "favorites_transit_lines"."favorite_id" = ?[0m  [["favorite_id", 1]]
+  ↳ db/seeds.rb:69
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:69
+  [1m[36mFavorite::HABTM_TransitLines Create (0.9ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 1], ["favorite_id", 1]]
+  ↳ db/seeds.rb:69
+  [1m[36mFavorite::HABTM_TransitLines Create (0.2ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 2], ["favorite_id", 1]]
+  ↳ db/seeds.rb:69
+  [1m[36mFavorite::HABTM_TransitLines Create (0.2ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["favorite_id", 1]]
+  ↳ db/seeds.rb:69
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:69
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:70
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:70
+  [1m[36mTransitLine Load (0.3ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines" INNER JOIN "favorites_transit_lines" ON "transit_lines"."id" = "favorites_transit_lines"."transit_line_id" WHERE "favorites_transit_lines"."favorite_id" = ?[0m  [["favorite_id", 2]]
+  ↳ db/seeds.rb:72
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:72
+  [1m[36mFavorite::HABTM_TransitLines Create (0.8ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 2], ["favorite_id", 2]]
+  ↳ db/seeds.rb:72
+  [1m[36mFavorite::HABTM_TransitLines Create (0.1ms)[0m  [1m[32mINSERT INTO "favorites_transit_lines" ("transit_line_id", "favorite_id") VALUES (?, ?)[0m  [["transit_line_id", 3], ["favorite_id", 2]]
+  ↳ db/seeds.rb:72
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:72
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:73
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:73
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:78
+  [1m[36mTransitLine Create (0.7ms)[0m  [1m[32mINSERT INTO "transit_lines" ("status", "operating_hours", "restrictions", "reliability", "name", "avg_price", "created_at", "updated_at", "kind", "start_time", "close_time") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["status", "Full Operation"], ["operating_hours", "8AM - 10PM"], ["restrictions", "None"], ["reliability", 8], ["name", "UP-SM North EDSA Jeep"], ["avg_price", 11.0], ["created_at", "2019-04-25 15:51:29.624274"], ["updated_at", "2019-04-25 15:51:29.624274"], ["kind", "Jeep"], ["start_time", "8AM"], ["close_time", "10PM"]]
+  ↳ db/seeds.rb:78
+  [1m[35m (3.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:78
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:80
+  [1m[36mTransitStop Create (1.3ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "UP Diliman"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.631455"], ["updated_at", "2019-04-25 15:51:29.631455"], ["latitude", 14.653796], ["longitude", 121.068538], ["kind", "School"]]
+  ↳ db/seeds.rb:80
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:80
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:81
+  [1m[36mTransitStop Create (0.7ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Philippine Coconut Authority"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.638233"], ["updated_at", "2019-04-25 15:51:29.638233"], ["latitude", 14.653625], ["longitude", 121.053138], ["kind", "Transport Terminal"]]
+  ↳ db/seeds.rb:81
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:81
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:82
+  [1m[36mTransitStop Create (2.1ms)[0m  [1m[32mINSERT INTO "transit_stops" ("name", "status", "created_at", "updated_at", "latitude", "longitude", "kind") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "SM North EDSA"], ["status", "Full Operation"], ["created_at", "2019-04-25 15:51:29.643496"], ["updated_at", "2019-04-25 15:51:29.643496"], ["latitude", 14.656321], ["longitude", 121.028872], ["kind", "Transport Terminal"]]
+  ↳ db/seeds.rb:82
+  [1m[35m (20.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:82
+  [1m[36mTransitStop Load (0.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 5]]
+  ↳ db/seeds.rb:78
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:78
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.6ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 5], ["transit_stop_id", 19]]
+  ↳ db/seeds.rb:78
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.2ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 5], ["transit_stop_id", 20]]
+  ↳ db/seeds.rb:78
+  [1m[36mTransitLine::HABTM_TransitStops Create (0.2ms)[0m  [1m[32mINSERT INTO "transit_lines_stops" ("transit_line_id", "transit_stop_id") VALUES (?, ?)[0m  [["transit_line_id", 5], ["transit_stop_id", 21]]
+  ↳ db/seeds.rb:78
+  [1m[35m (3.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:78
+Started GET "/transit_lines/2" for ::1 at 2019-04-25 23:51:41 +0800
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/seanryanchan/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by TransitLinesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTransitLine Load (0.6ms)[0m  [1m[34mSELECT  "transit_lines".* FROM "transit_lines" WHERE "transit_lines"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/transit_lines_controller.rb:111
+  Rendering transit_lines/show.html.erb within layouts/application
+  [1m[36mTransitStop Load (1.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 2]]
+  ↳ app/views/transit_lines/show.html.erb:46
+  Rendered transit_lines/show.html.erb within layouts/application (49.1ms)
+  [1m[36mCommuter Load (0.3ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (9.5ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 847ms (Views: 786.7ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/transit_lines" for ::1 at 2019-04-25 23:52:14 +0800
+Processing by TransitLinesController#index as HTML
+  Rendering transit_lines/index.html.erb within layouts/application
+  [1m[36mTransitLine Load (0.4ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines"[0m
+  ↳ app/views/transit_lines/index.html.erb:86
+  Rendered transit_lines/index.html.erb within layouts/application (7.6ms)
+  [1m[36mCommuter Load (0.3ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (3.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 101ms (Views: 98.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/transit_lines/1" for ::1 at 2019-04-25 23:52:17 +0800
+Processing by TransitLinesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTransitLine Load (0.3ms)[0m  [1m[34mSELECT  "transit_lines".* FROM "transit_lines" WHERE "transit_lines"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/transit_lines_controller.rb:111
+  Rendering transit_lines/show.html.erb within layouts/application
+  [1m[36mTransitStop Load (0.3ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 1]]
+  ↳ app/views/transit_lines/show.html.erb:46
+  Rendered transit_lines/show.html.erb within layouts/application (5.6ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 110ms (Views: 103.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/transit_lines" for ::1 at 2019-04-25 23:52:24 +0800
+Processing by TransitLinesController#index as HTML
+  Rendering transit_lines/index.html.erb within layouts/application
+  [1m[36mTransitLine Load (0.4ms)[0m  [1m[34mSELECT "transit_lines".* FROM "transit_lines"[0m
+  ↳ app/views/transit_lines/index.html.erb:86
+  Rendered transit_lines/index.html.erb within layouts/application (8.4ms)
+  [1m[36mCommuter Load (0.2ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (3.3ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 120ms (Views: 118.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/transit_lines/3" for ::1 at 2019-04-25 23:52:26 +0800
+Processing by TransitLinesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTransitLine Load (0.3ms)[0m  [1m[34mSELECT  "transit_lines".* FROM "transit_lines" WHERE "transit_lines"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/transit_lines_controller.rb:111
+  Rendering transit_lines/show.html.erb within layouts/application
+  [1m[36mTransitStop Load (0.3ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 3]]
+  ↳ app/views/transit_lines/show.html.erb:46
+  Rendered transit_lines/show.html.erb within layouts/application (8.1ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (1.9ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 115ms (Views: 107.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/transit_lines/3" for ::1 at 2019-04-25 23:52:34 +0800
+Processing by TransitLinesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTransitLine Load (0.2ms)[0m  [1m[34mSELECT  "transit_lines".* FROM "transit_lines" WHERE "transit_lines"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/transit_lines_controller.rb:111
+  Rendering transit_lines/show.html.erb within layouts/application
+  [1m[36mTransitStop Load (0.2ms)[0m  [1m[34mSELECT "transit_stops".* FROM "transit_stops" INNER JOIN "transit_lines_stops" ON "transit_stops"."id" = "transit_lines_stops"."transit_stop_id" WHERE "transit_lines_stops"."transit_line_id" = ?[0m  [["transit_line_id", 3]]
+  ↳ app/views/transit_lines/show.html.erb:46
+  Rendered transit_lines/show.html.erb within layouts/application (4.3ms)
+  [1m[36mCommuter Load (0.1ms)[0m  [1m[34mSELECT  "commuters".* FROM "commuters" WHERE "commuters"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:29
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 86ms (Views: 81.0ms | ActiveRecord: 0.5ms)
+
+

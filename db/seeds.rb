@@ -36,24 +36,24 @@ v = TransitLine.create(name: "Victory Liner", kind: "Bus", status: "Full Operati
 
 
 # List of Transit Stops
-cs = TransitStop.create(name: "Cubao Southbound", kind: "Bus Terminal", latitude: 14.631, longitude: 121.045)
-cn = TransitStop.create(name: "Cubao Northbound", kind: "Bus Terminal", latitude: 14.632, longitude: 121.045)
-pitx = TransitStop.create(name: "Parañaque Integrated Terminal Exchange", kind: "Transport Terminal", latitude: 14.51, longitude: 120.99)
-ca = TransitStop.create(name: "Cubao Araneta", kind: "Transport Terminal", latitude: 14.51, longitude: 120.99)
-technohub = TransitStop.create(name: "UP Ayala Technohub", kind: "Bus Stop", latitude: 14.657252, longitude:121.057616)
-tandang = TransitStop.create(name: "Tandang Sora Avenue", kind: "Bus Stop", latitude: 14.663468, longitude: 121.068281)
-gmaKamuning = TransitStop.create(name: "GMA Kamuning Station", kind: "Train Stop", latitude: 14.635008, longitude: 121.043074)
-smNorthMRT = TransitStop.create(name: "North Avenue", kind: "Train Stop", latitude:14.652101, longitude: 121.032204)
-taftMRT = TransitStop.create(name: "Taft Avenue", kind: "Train Stop", latitude: 14.537634, longitude:121.002229)
-valenzuela = TransitStop.create(name: "Puregold Valenzuela", kind: "Bus Stop", latitude: 14.708930, longitude: 120.993755)
-fiveStarMey = TransitStop.create(name: "Five Star Meycauayan", kind: "Bus Stop", latitude: 14.752572, longitude: 120.975030)
-patubig = TransitStop.create(name: "Patubig / Duhat St. Bus Stop", kind: "Bus Stop", latitude: 14.776627, longitude: 120.959013)
-smPampanga = TransitStop.create(name: "SM City Pampanga Jeepney Terminal", kind: "Jeepney Terminal", latitude: 15.051570, longitude: 120.700337)
-robPampanga = TransitStop.create(name: "Robinsons Starmills", kind: "Bus Terminal", latitude: 15.049008, longitude: 120.698320)
-angelesMarquee = TransitStop.create(name: "Marquee Mall", kind: "Bus Terminal", latitude: 15.162366, longitude: 120.608489)
-dau = TransitStop.create(name: "Dau Bus Terminal", kind: "Bus Terminal", latitude: 15.178267, longitude: 120.589395)
-mabalacat = TransitStop.create(name: "Magalang-Macalabat Terminal", kind: "Bus Terminal", latitude: 15.222026, longitude: 120.575341)
-baguioVictory = TransitStop.create(name: "Baguio Victory Liner Bus Terminal", kind: "Bus Terminal", latitude: 16.405570, longitude: 120.602706)
+cs = TransitStop.create(name: "Cubao Southbound", kind: "Bus Terminal", latitude: 14.631, longitude: 121.045, status: "Full Operation")
+cn = TransitStop.create(name: "Cubao Northbound", kind: "Bus Terminal", latitude: 14.632, longitude: 121.045, status: "Full Operation")
+pitx = TransitStop.create(name: "Parañaque Integrated Terminal Exchange", kind: "Transport Terminal", latitude: 14.51, longitude: 120.99, status: "Full Operation")
+ca = TransitStop.create(name: "Cubao Araneta", kind: "Transport Terminal", latitude: 14.51, longitude: 120.99, status: "Full Operation")
+technohub = TransitStop.create(name: "UP Ayala Technohub", kind: "Bus Stop", latitude: 14.657252, longitude:121.057616, status: "Full Operation")
+tandang = TransitStop.create(name: "Tandang Sora Avenue", kind: "Bus Stop", latitude: 14.663468, longitude: 121.068281, status: "Full Operation")
+gmaKamuning = TransitStop.create(name: "GMA Kamuning Station", kind: "Train Stop", latitude: 14.635174, longitude: 121.043235, status: "Full Operation")
+smNorthMRT = TransitStop.create(name: "North Avenue", kind: "Train Stop", latitude:14.652101, longitude: 121.032204, status: "Full Operation")
+taftMRT = TransitStop.create(name: "Taft Avenue", kind: "Train Stop", latitude: 14.537634, longitude:121.002229, status: "Full Operation")
+valenzuela = TransitStop.create(name: "Puregold Valenzuela", kind: "Bus Stop", latitude: 14.708930, longitude: 120.993755, status: "Full Operation")
+fiveStarMey = TransitStop.create(name: "Five Star Meycauayan", kind: "Bus Stop", latitude: 14.752572, longitude: 120.975030, status: "Full Operation")
+patubig = TransitStop.create(name: "Patubig / Duhat St. Bus Stop", kind: "Bus Stop", latitude: 14.776627, longitude: 120.959013, status: "Full Operation")
+smPampanga = TransitStop.create(name: "SM City Pampanga Jeepney Terminal", kind: "Jeepney Terminal", latitude: 15.051570, longitude: 120.700337, status: "Full Operation")
+robPampanga = TransitStop.create(name: "Robinsons Starmills", kind: "Bus Terminal", latitude: 15.049008, longitude: 120.698320, status: "Full Operation")
+angelesMarquee = TransitStop.create(name: "Marquee Mall", kind: "Bus Terminal", latitude: 15.162366, longitude: 120.608489, status: "Full Operation")
+dau = TransitStop.create(name: "Dau Bus Terminal", kind: "Bus Terminal", latitude: 15.178267, longitude: 120.589395, status: "Full Operation")
+mabalacat = TransitStop.create(name: "Magalang-Macalabat Terminal", kind: "Bus Terminal", latitude: 15.222026, longitude: 120.575341, status: "Full Operation")
+baguioVictory = TransitStop.create(name: "Baguio Victory Liner Bus Terminal", kind: "Bus Terminal", latitude: 16.405570, longitude: 120.602706, status: "Full Operation")
 
 
 # Transit Lines and Transit Stops
@@ -77,7 +77,7 @@ menards_route.save
 
 TransitLine.create(name: "UP-SM North EDSA Jeep", kind: "Jeep", status: "Full Operation", restrictions: "None", avg_price: 11.00,
   operating_hours: "8AM - 10PM", reliability: "8.0", start_time: "8AM", close_time: "10PM").transit_stops = [
-  TransitStop.create(name: "UP Diliman", kind: "School", latitude: 14.653796, longitude: 121.068538),
-  TransitStop.create(name: "Philippine Coconut Authority", kind: "Transport Terminal", latitude: 14.653625, longitude: 121.053138),
-  TransitStop.create(name: "SM North EDSA", kind: "Transport Terminal", latitude: 14.656321, longitude: 121.028872)
+  TransitStop.create(name: "UP Diliman", kind: "School", latitude: 14.653796, longitude: 121.068538, status: "Full Operation"),
+  TransitStop.create(name: "Philippine Coconut Authority", kind: "Transport Terminal", latitude: 14.653625, longitude: 121.053138, status: "Full Operation"),
+  TransitStop.create(name: "SM North EDSA", kind: "Transport Terminal", latitude: 14.656321, longitude: 121.028872, status: "Full Operation")
 ]
