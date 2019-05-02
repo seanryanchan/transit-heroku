@@ -10,7 +10,7 @@
   # File Creation Date: 2/5/2019
   # Development Group: Transit Development Tteam (Chan,Cruz,Marrero)
   # Client Group: UP Student Dormers
-  # Purpose of the Software: The project is to make a web-based application named Transit, and its main vision is to inform dormers and other temporary housed students to travel back to their 
+  # Purpose of the Software: The project is to make a web-based application named Transit, and its main vision is to inform dormers and other temporary housed students to travel back to their
   #   permanent residence of the routes and methods from their current location. Being on a budget, students are more inclined to cheaper options in favor of comfort or travel time.
 
 class Favorite < ApplicationRecord
@@ -19,6 +19,6 @@ class Favorite < ApplicationRecord
   #   Validates the name of the Favorite Route Group
   #   Each Favorite Route Group may have a number of transit lines associated within them.
   belongs_to :commuter
-  validates :name, presence: true
+  validates :name, presence: true, length: {maximum: 25}
   has_and_belongs_to_many :transit_lines
 end
