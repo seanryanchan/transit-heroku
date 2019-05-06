@@ -57,7 +57,7 @@
           Destroy, To delete/remove the Favorite Route Group
       -->
         <tr>
-          <td><%= favorite.name %></td>
+          <td><a href="<%= favorite_path(favorite) %>" class="text-dark"><%= favorite.name %></a></td>
           <td><%= favorite.commuter.name %></td>
           <td><a href="<%= favorite_path(favorite) %>"><i class="fas fa-eye"></i></a> </td>
           <td><a href="<%= edit_favorite_path(favorite) %>"><i class="fas fa-edit"></i></a></td>

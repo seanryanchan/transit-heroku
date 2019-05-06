@@ -42,11 +42,11 @@
           <div class="row m-0 mb-3 w-100">
             <%= text_field_tag :kind, params[:kind], :placeholder => "Type" , :class => 'form-control col-lg-4'%>
             <%= time_field_tag :operating_hours, params[:operating_hours], :placeholder => "Operating Hours" , :class => 'form-control col-lg-4'%>
-            <%= text_field_tag :reliability, params[:reliability], :placeholder => "Reliability" , :class => 'form-control col-lg-4'%>
+            <%= number_field_tag :reliability, params[:reliability], :placeholder => "Reliability" , :class => 'form-control col-lg-4', step: "0.1"%>
           </div>
           <div class="row m-0 w-100">
-            <%= text_field_tag :min_price, params[:min_price], :placeholder => "Minimum Price" , :class => 'form-control col-6'%>
-            <%= text_field_tag :max_price, params[:max_price], :placeholder => "Maximum Price" , :class => 'form-control col-6'%>
+            <%= number_field_tag :min_price, params[:min_price], :placeholder => "Minimum Price" , :class => 'form-control col-6', step: "0.01"%>
+            <%= number_field_tag :max_price, params[:max_price], :placeholder => "Maximum Price" , :class => 'form-control col-6', step: "0.01"%>
           </div>
         </div>
 
@@ -94,7 +94,7 @@
             ">
             </i>
         </td>
-        <td><%= transit_line.name %></td>
+        <td><a href="<%= transit_line_path(transit_line) %>" class="text-dark"><%= transit_line.name %></a></td>
 
         <td><%= transit_line.operating_hours %></td>
         <td><%= transit_line.kind %></td>
