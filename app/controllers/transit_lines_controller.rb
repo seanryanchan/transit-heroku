@@ -31,7 +31,7 @@ class TransitLinesController < ApplicationController
       @transit_lines = @transit_lines.where(["kind LIKE ?", "%#{params[:kind]}%"]) if params[:kind].present?
 
       #@transit_lines = @transit_lines.where(["#{:start_time.to_s.to_i} <= ?", "#{((DateTime.parse(params[:operating_hours])).strftime("%H%M"))}".to_i]) if params[:operating_hours].present?
-      @transit_lines = @transit_lines.where(["reliability LIKE ?", "%#{params[:reliability]}%"]) if params[:reliability].present?
+      @transit_lines = @transit_lines.where(["reliability >= ?", params[:reliability]]) if params[:reliability].present?
       @transit_lines = @transit_lines.where(["avg_price >= ?", params[:min_price].to_f]) if params[:min_price].present?
       @transit_lines = @transit_lines.where(["avg_price <= ?", params[:max_price].to_f]) if params[:max_price].present?
       (listOfLinesWithinHours = []
